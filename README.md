@@ -18,7 +18,6 @@ Hardware:
   Krokoklemmen, Gummibänder, Schrauben, Tesafilm, Reiszwecken, Schnur, muttern/unterlegscheiben
 
 
-  
 Ablaufplan
 ----------
 
@@ -29,7 +28,7 @@ Ablaufplan
 - tastatur und makeymakey: wie geht das?
 - eToys erklären (rest auf Zetteln)
   - Scripte, Interaktion von Objekten, Malen, Bewegen -> Ausprobieren
-- Zettel:
+- [Zettel](todo.md):
   - springen
   - kollision
 - baut controller für euer Spiel !!!!
