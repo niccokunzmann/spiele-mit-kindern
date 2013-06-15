@@ -28,7 +28,7 @@ Ablaufplan
 - makeymakey video zeigen
 - tastatur und makeymakey: wie geht das?
 - eToys erklären (rest auf Zetteln)
-  - Scripte, Wahrnehmung, Malen, Bewegen -> Ausprobieren
+  - Scripte, Interaktion von Objekten, Malen, Bewegen -> Ausprobieren
 - baut controller für euer Spiel !!!!
 
 - Pause!
@@ -44,4 +44,10 @@ Ablaufplan
 
 2 Teil: eigenes Spiel
 ---------------------
+
+
+
+
+
+
 
