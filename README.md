@@ -6,8 +6,8 @@ Spiele entwickeln
 
 Zu Klären
 
-- Dauer
-- Altersgruppe : 
+- Dauer: 4h
+- Altersgruppe : >= 10
 - Vorkenntnisse : Lesen können.
 - Ablaufplan
 
@@ -34,7 +34,7 @@ Ablaufplan
   - kollision
 - baut controller für euer Spiel !!!!
 
-- Pause!
+
 - schaltung bauen
 - Spiel entwickeln: Alle Pong
 
@@ -44,6 +44,8 @@ Ablaufplan
   - Kinder dürfen nicht an dem spiel bleiben, dass spaß macht. 
   - kaputte spiele scheiden aus.
   - Zurücksetzen muss implementiert sein.
+
+- Pause!
 
 2 Teil: eigenes Spiel
 ---------------------
