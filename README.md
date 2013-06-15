@@ -29,6 +29,9 @@ Ablaufplan
 - tastatur und makeymakey: wie geht das?
 - eToys erklären (rest auf Zetteln)
   - Scripte, Interaktion von Objekten, Malen, Bewegen -> Ausprobieren
+- Zettel:
+  - springen
+  - kollision
 - baut controller für euer Spiel !!!!
 
 - Pause!
@@ -45,8 +48,10 @@ Ablaufplan
 2 Teil: eigenes Spiel
 ---------------------
 
-
-
+- was kennt ihr für spiele
+  - schwer: bomberman, shooter, angry birds, pacman, 
+  - mittel: asteroids, snake, breakout
+  - leicht: autorennen, labyrinth, malen
 
 
 
