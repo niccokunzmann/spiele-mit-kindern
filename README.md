@@ -25,7 +25,7 @@ Ablaufplan
 1 Teil: Pong
 ------------
 
-- makeymakey video zeigen
+- [makeymakey video zeigen](http://www.makeymakey.com/)
 - tastatur und makeymakey: wie geht das?
 - eToys erklären (rest auf Zetteln)
   - Scripte, Interaktion von Objekten, Malen, Bewegen -> Ausprobieren
@@ -41,7 +41,7 @@ Ablaufplan
 - Tunier. Vorraussetzungen: 
   - es ist klar, wer gewonnen hat
   - Timebox:  jedes spiel dauert bestimmte zeit. 
-  - Kinder dürfen nicht an dem spiel bleiben, dass spaß macht. 
+  - Kinder dürfen nicht an dem spiel bleiben, das spaß macht. 
   - kaputte spiele scheiden aus.
   - Zurücksetzen muss implementiert sein.
 
