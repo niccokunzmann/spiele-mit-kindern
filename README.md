@@ -1,7 +1,7 @@
 spiele-mit-kindern
 ==================
 
-Spiele entwickeln
+Ziel ist es, mit MakeyMakey und EToys ein Spiel und einen Game-controller dafür zu bauen.
 
 
 Zu Klären
