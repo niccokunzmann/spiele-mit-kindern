@@ -8,17 +8,15 @@ Malen:
 
 Elemente:
 ---------
-- Spielfeld (Objektkatalog->Graphen)
-- 4 KeyPressMorph (Objectkatalog->Dies und das)
+- Spielfeld (Objektkatalog->Graphen->Spielfeld)
+- 4 KeyPressMorph (Objectkatalog->Dies und das-> Key Press)
   - für jeden der Schieber eine Taste für nach oben und eine für nach unten
   - [So könnte das aussehen] (KeyPressMorph.jpg)
+- zwei Punkte anzeigen, für jeden Spieler eine (z.B. Objektkatalog->Verbinder->Verbesserter Text)
 
 
 
 
  
 
-Ein KeyPressMorph:
-------------------
-Methoden:
-- tastendruck
+
