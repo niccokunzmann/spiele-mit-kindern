@@ -13,18 +13,7 @@ Elemente:
   - für jeden der Schieber eine Taste für nach oben und eine für nach unten
   - [So könnte das aussehen] (KeyPressMorph.jpg)
 
-Das Ball Objekt:
-----------------
-Methoden:
-- Ball>>bewegen
-  - 
-- Ball>>abprallen
-- Ball>>Punkten
-- Ball>>reset
-- Ball>>starten
 
-Variablen:
-- Balls>>winkel
 
 Ein Schieber:
 -------------
