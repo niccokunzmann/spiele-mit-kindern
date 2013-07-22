@@ -23,5 +23,5 @@ aufgerufen.
 Die Methode `abprallen` prüft, ob der Ball mit einem der Schieber überlappt und prallt dann relativ 
 zu dessen Mittelpunkt vom Schieber ab.
 
-Die Methode `bewegen` wirde während das Spiel Läuft endlos ausgeführt. Die methoden `punkten` und 
-`abprallen`werden aufgerufen, danach wird der Ball entsprechend seiner Richtung bewegt.
+Die Methode `bewegen` wird während das Spiel läuft endlos ausgeführt. Die methoden `punkten` und 
+`abprallen` werden aufgerufen, danach wird der Ball entsprechend seiner Richtung bewegt.
