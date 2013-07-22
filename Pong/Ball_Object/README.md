@@ -12,7 +12,7 @@ Methoden:
 
 
 Die Methode `starten` setzt die Punktestände der Spieler einmal zurück und führt einmal die Methode 
-`reset` aus. Danach beendet es sich selbst.
+`reset` aus. Danach beendet sie sich selbst.
 
 Die Methode `reset` startet den Ball von der Mitte in eine zufällige Richtung.
 
