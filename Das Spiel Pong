@@ -1,11 +1,13 @@
 Malen:
 ============
+
 - zwei Schieber, für rechts und links
 - ein Ball
 - Verschieden farbige Ränder(rechts und links)
 
 Elemente:
 =============
+
 - Spielfeld (Objektkatalog->Graphen)
 - KeyPressMorph (Objectkatalog->Dies und das)
 
