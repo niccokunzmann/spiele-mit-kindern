@@ -1,8 +1,8 @@
 Ein Schieber:
 -------------
 Methoden:
-- [Schieber>>hoch] (Schieber_hoch.jpg)
-- [Schieber>>runter] (Schieber_runter.jpg)
+- [Schieber>>hoch] (Schieber_hoch.JPG)
+- [Schieber>>runter] (Schieber_runter.JPG)
 
 Variablen:
 - Schiebers>>geschwindigkeit
