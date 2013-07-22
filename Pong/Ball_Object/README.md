@@ -1,4 +1,4 @@
-Das Ball Objekt:
+Das Ball Objekt
 ----------------
 Methoden:
 - [Ball>>bewegen] (Ball_bewegen.jpg)
