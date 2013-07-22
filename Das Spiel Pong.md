@@ -5,6 +5,8 @@ Malen:
 - ein Ball
 - Verschieden farbige Ränder(rechts und links)
 
+[Bild vom Spielfeld mit Elementen] (PongSpielfeld.jpg)
+
 Elemente:
 =============
 
