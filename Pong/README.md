@@ -15,15 +15,7 @@ Elemente:
 
 
 
-Ein Schieber:
--------------
-Methoden:
-- Schieber>>hoch
-- Schieber>>runter
 
-Variablen:
-- Schiebers>>geschwindigkeit
-- Schiebers>>posCache
  
 
 Ein KeyPressMorph:
