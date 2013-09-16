@@ -15,7 +15,7 @@ Hardware:
 
 - [MakeyMakey](http://www.makeymakey.com/)
 - Pappe, Papier, Stifte, Leitknete, Bleistifte, Alufolie, Scheren, 
-  Krokoklemmen, Gummibänder, Schrauben, Tesafilm, Reiszwecken, Schnur, muttern/unterlegscheiben
+  Krokoklemmen, Gummibänder, Schrauben, Tesafilm, Reiszwecken, Schnur, muttern/unterlegscheiben, Draht
 
 
 Ablaufplan
@@ -52,7 +52,7 @@ Ablaufplan
 - was kennt ihr für spiele
   - schwer: bomberman, shooter, angry birds, pacman, 
   - mittel: asteroids, snake, breakout
-  - leicht: autorennen, labyrinth, malen
+  - leicht: autorennen, labyrinth, malen, Pong
 
 
 
