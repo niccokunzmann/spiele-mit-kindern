@@ -15,7 +15,7 @@ Hardware:
 
 - [MakeyMakey](http://www.makeymakey.com/)
 - Pappe, Papier, Stifte, Leitknete, Bleistifte, Alufolie, Scheren, 
-  Krokoklemmen, Gummibänder, Schrauben, Tesafilm, Reiszwecken, Schnur, muttern/unterlegscheiben, Draht
+  Krokoklemmen, Gummibänder, Schrauben, Tesafilm, Reiszwecken, Schnur, muttern/unterlegscheiben, Draht, Schokoriegel
 
 
 Ablaufplan
