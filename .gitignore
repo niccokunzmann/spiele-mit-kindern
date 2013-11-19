@@ -1,1 +1,4 @@
 /beispiele/phidgets+etoys
+~*.pptx
+~*.docx
+~*.xlsx
