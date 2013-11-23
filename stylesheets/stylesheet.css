@@ -76,6 +76,10 @@ h1.title {
   text-align: center;
 }
 
+a.title {
+  color: black;
+}
+
 .wrapper {
   width: 675px;
   margin: 0 auto;

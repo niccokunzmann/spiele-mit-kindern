@@ -41,7 +41,7 @@ loadjscssfile("http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js",
 // showdown.js 
 loadjscssfile("http://markdowntohtml.com/showdown.js", "js");
 // change the markdown body to html
-loadjscssfile("/javascripts/changethewebsite.js", "js");
+loadjscssfile("javascripts/changethewebsite.js", "js");
 
 /** 
  * 
