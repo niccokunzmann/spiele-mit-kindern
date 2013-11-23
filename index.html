@@ -21,16 +21,83 @@ Etoys starten
 
 Nach einer Weile öffnet sich dann die Entwicklungsumgebung.
 
-![Etoys Home Screen](/images/tutorial/01-EtoysHomeScreen.png) 
+![Etoys Home Screen](images/tutorial/01-EtoysHomeScreen.png) 
 
 Mit der oberen Leiste von Etoys lohnt es sich zu experimentieren.
 
 Im folgenden Bild zeigen Pfeile auf Zahlen und Farben. Diese kann mann auch verändern und sehen, was es für Folgen hat.
 
-![Auto veraendern](/images/tutorial/02-CarScript.png)
+![Auto verändern](images/tutorial/02-CarScript.png)
  
 Wir werden diese Bausteine im Folgenden benutzen.
 
+Pong Projekt anfangen
+=====================
+
+Pong, weil es Elemente hat, die man in vielen Spielen braucht:
+
+ - Bewegung
+ - Kollision
+ - Punktestand = Zustand
+ - Tastatur
+
+Zuerst machen wir ein neues Projekt.
+
+![Neues Projekt anklicken](images/tutorial/NeuesProjekt.png)
+
+So ähnlich wird es aussehen:
+
+![Bild von Pong](http://stream1.gifsoup.com/view2/1999296/pong-o.gif)
+
+Um dem Ganzen Herr zu werden hier Teilprobleme, die zusammen das große Problem lösen, wie man Pong baut:
+
+ - [ein Ball, der sich bewegt](#derball)
+ - zwei Schieber, die man steuern kann
+ - dass der Ball an den Schiebern abprallt
+
+Vielleicht auch auch noch
+
+ - Punkteanzeigenfür die Spieler 
+
+Ball Erstellen
+==============
+
+Also machen wir einen Ball. Form und Farbe sind egal:
+
+![Ball Malen](images/tutorial/03-BallMalen.png)
+
+![OK.](images/tutorial/OK.png) klicken, dann kann der Ball mit der Rechten Maustaste angeklickt werden:
+
+![Ball Rechtsklick](images/tutorial/04-BallRechtsklick.png)
+
+Die Halos [Häilos gesprochen], die um den Ball erscheinen, haben auch eine Hilfe und sind nützlich[Das heißt: wenn du viel mit Etoys erreichst, wirst du irgendwann mal alle benutzt haben. Also klicke alle an und sieh was passiert. Unten links ist der Mülleimer.].
+
+Der Pfeil ist die Richtung und der blaue Kreis ist der Drehmittelpunkt.
+
+Momentan heißt der Ball aber nicht **Ball** sondern **Zeichnung**. Deswegen wird er umbenannt. Dann wird er später leichter gefunden.
+  
+![Ball Umbenennen](images/tutorial/05-BallUmbenannt.png)
+
+Der Ball ist ein Objekt, das man rumschieben und mit der Maus anfassen kann. Jedes Objekt kann etwas tun. Um das Verhalten zu sehen, muss man in das Objekt reinsehen. Also klicken wir auf das ![Auge](images/tutorial/auge.png).
+
+![Ball Verhalten geben](images/tutorial/06-BallVerhalten.png)
+
+Den Ball bewegen
+================
+
+Um automatisches, eigenständiges Verhalten in den Ball zu tun (dass er das selbst macht), öffnen wir die Kategorie **Scripte**.
+
+![Auf Tests klicken und Scripte auswählen](images/tutorial/07-BallVerhaltenScripte.png)
+
+In den Scripten (keines da bis jetzt), steckt das eigene Verhalten (keines da bis jetzt). Also muss ein neues Script her. Anklicken, rausziehen, auf die Welt  fallen lassen.
+
+![leeres Script rausziehen](images/tutorial/08-ScriptRausziehen.png)
+
+Gleich noch weitere Bestandteile hinzufügen:
+
+![](images/tutorial/09-ScriptBewegen.png)
+
+![](images/tutorial/10-BewegenAbprallen.png)
 
 
 </body></html>
