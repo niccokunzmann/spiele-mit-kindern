@@ -26,7 +26,6 @@ function changeSourcecode() {
   });
   loadjscssfile("/javascripts/script.js", "js");
 }
-alert(1);
 
 readyToChangeTheDocument();
  

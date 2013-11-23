@@ -25,15 +25,12 @@ function loadjscssfile(filename, filetype){
    * http://stackoverflow.com/questions/519145/how-can-i-check-whether-a-variable-is-defined-in-javascript
    * http://stackoverflow.com/questions/1116983/javascript-how-do-i-make-sure-a-jquery-is-loaded
    */
-  alert(4);
   if ((typeof Showdown === 'undefined') || (typeof Showdown.converter === 'undefined') || (!(window.$))) {
     window.setTimeout(readyToChangeTheDocument, 50);
   } else {
     $(document).ready(function() {
-      alert(2);
       var converter = new Showdown.converter();
       $('body').html(headerString + converter.makeHtml($('body').html()) + footerString);
-      alert(3);
       changeSourcecode();
     });
   }
