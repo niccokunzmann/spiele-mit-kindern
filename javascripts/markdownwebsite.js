@@ -37,9 +37,11 @@ function loadjscssfile(filename, filetype){
 };
 
 // jQuery
-loadjscssfile("http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js", "js");
+// http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js
+loadjscssfile("javascripts/jquery.min.js", "js");
 // showdown.js 
-loadjscssfile("http://markdowntohtml.com/showdown.js", "js");
+// http://markdowntohtml.com/showdown.js
+loadjscssfile("javascripts/showdown.js", "js");
 // change the markdown body to html
 loadjscssfile("javascripts/changethewebsite.js", "js");
 
