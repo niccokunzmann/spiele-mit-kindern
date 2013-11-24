@@ -52,7 +52,7 @@ So ähnlich wird es aussehen:
 Teilprobleme, die zusammen das große Problem lösen, wie man Pong baut:
 
  - [ein Ball, der sich bewegt](#ballerstellen)
- - zwei Schieber, die man steuern kann
+ - [zwei Schieber, die man steuern kann](#einenschiebererstellen)
  - dass der Ball an den Schiebern abprallt
 
 Vielleicht auch auch noch
@@ -122,7 +122,7 @@ Immer speichern, wenn du das Gefühl hast, etwas geschafft zu haben, was du nich
 
 Jetzt ist der Projektstand im Ordner **Etoys** gespeichert. Dieser befindet sich neben dem Ordner **Etoys-To-Go 5.0.app**. [Solltest du eine installierte Version haben, ist der Ordner **Etoys** im Dokumente-Verzeichnis.] Alle weiteren Speicherstände werden dort abgespeichert. Wenn du jemandem dein Spiel gibst, gibst du ihm am Besten gleich beide Ordner. Wenn er auch Etoys hat, reicht deine letzte Projekt-Datei, die bei mir gerade **Pong.001.pr** heißt. Die Zahl am Ende wird hochgezählt wenn gespeichert wird.
 
-Einen Schieber erstellen
+Einen Schieber Erstellen
 ========================
 
 Wenn wir erstmal einen Schieber haben, können wir ihn duplizieren. Das geht schneller, als zwei zugleich zu bauen.
@@ -134,7 +134,7 @@ Nachdem wir einen Schieber gemalt haben, [wie wir einen Ball gemalt haben](#ball
 Den Schieber bewegen
 ====================
 
-Das funktioniert wie [den Ball zu bewegen](denballbewegen).
+Das funktioniert wie [den Ball zu bewegen](#denballbewegen).
 So soll es dann aussehen: 
 
 ![Der Schieber bewegt sich nach oben](images/tutorial/152-SchieberBewegen.png)
@@ -165,6 +165,63 @@ So sieht es jetzt bei mir aus. **Ball bewegen** und **SchieberLinks bewegen** li
 
 ![](images/tutorial/18-TestEinfuegen.png)
 
+[Speichern?](#dasprojektspeichern)
 
+Auf Tasten Testen
+=================
+
+Der Schieber soll nur bewegt werden, wenn die Taste gedrückt wird.
+Das macht man mit einem Test. 
+
+Man braucht dazu 
+
+> ![einen Test](images/tutorial/test.png) in ![der orangen Box](images/tutorial/OrangeBox.png) 
+> 
+> ![SchieberLinks gehe vorwärts um 5](images/tutorial/SchieberLinksGeheVorwaertsUm5.png)
+> 
+> ![SchieberLinksHoch ist gedrückt](images/tutorial/SchieberLinksHochsTasteIstGedrueckt.png)
+> 
+> ![das Script zum Schieber bewegen](images/tutorial/182-SchieberBewegenLeer.png)
+
+
+Zusammen stecken und so sieht es dann aus:
+
+<solution>
+![einen Test](images/tutorial/19-SchieberBewegen.png)
+</solution>
+
+Schieber Steuern
+================
+
+Es gibt einen Halo namens "duplizieren" ![](images/tutorial/duplizieren.png). Damit können wir kopieren, was wir schonmal gemacht haben.
+
+Damit der Schieber sich nach unten bewegt, muss man den KeyPress duplizieren und den Test auf den Tastendruck. Der Test muss dazu aus dem Script genommen werden.
+
+![](images/tutorial/20-duplizieren.png)
+ 
+Dann benenne ich den anderen KeyPress um zu **LinkerSchieberRunter** und erstellen eine Kachel.
+
+![Kachel erstellen](images/tutorial/21-KachelErstellen.png)
+
+Mit diesen Dingen kann man hoch und runter machen:
+
+>  ![Das Script zum Schieber bewegen](images/tutorial/182-SchieberBewegenLeer.png)
+> 
+> ![KeyPress](images/tutorial/KeyPress.png) LinkerSchieberRunter ![KeyPress](images/tutorial/KeyPress.png) LinkerSchieberHoch
+> 
+> ![Test bewegen auf Tastendruck](images/tutorial/22-Test.png) zwei mal
+> 
+> ![LinkerSchieberRunter Kachel](images/tutorial/23-LinkerSchieberRunter.png) diese Kachel
+
+<hinweis>
+Man kann die Kachel **LinkerSchieberRunter** auf die **KachelLinkerSchieberHochs** ziehen und fallen lassen. Damit wird ersetzt.
+Negative Zahlen eignen sich um Rückwärts zu gehen.
+</hinweis>
+
+Andere Lösungen sind bestimmt auch richtig, solange sich der Schieber in beide Richtungen bewegt. So mache ich das:
+
+<solution>
+![LinkerSchieberRunter Kachel](images/tutorial/24-Loesung.png)
+</solution>
 
 </body></html>

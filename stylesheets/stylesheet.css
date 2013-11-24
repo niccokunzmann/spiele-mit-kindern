@@ -89,6 +89,11 @@ a.title {
   margin: 0 auto;
 }
 
+div.ClosedSolution{
+  /* http://stackoverflow.com/questions/3800534/css-div-height-setting-to-zero */
+  display:none;
+}
+
 #container {
   border: 1px solid #2a2a2a;
   background: #ddd url(../images/pattern.png);

@@ -30,7 +30,7 @@ function loadjscssfile(filename, filetype){
   } else {
     $(document).ready(function() {
       var converter = new Showdown.converter();
-      $('body').html(headerString + converter.makeHtml($('body').html()) + footerString);
+      $('body').html(headerString + converter.makeHtml($('body').html().replace('&gt;', '>', 'g')) + footerString);
       changeSourcecode();
     });
   }

@@ -11,6 +11,29 @@ var footerString = '        </article>      </div>    </div>    <footer>      <d
 loadjscssfile("stylesheets/stylesheet.css", "css");
 loadjscssfile("stylesheets/pygment_trac.css", "css");
 
+
+function toggleHiddenDiv(id, link, hideText, showText) {
+  link = $(link);
+  if ($("#" + id).attr('class') == 'ClosedSolution') {
+    // http://api.jquery.com/id-selector/
+    $("#" + id).attr('class', 'OpenSolution');
+    link.html(hideText);
+  } else {
+    $("#" + id).attr('class', 'ClosedSolution');
+    link.html(showText);
+  }
+  // http://www.yourhtmlsource.com/javascript/functions.html
+  return false;
+};
+
+function toggleSolution(id, link) {
+  toggleHiddenDiv(id, link, "L&ouml;sung verstecken!", "L&ouml;sung zeigen?");
+};
+
+function toggleHint(id, link) {
+  toggleHiddenDiv(id, link, "Hinweis verstecken!", "Hinweis zeigen?");
+};
+
 function changeSourcecode() {
   // http://api.jquery.com/find/
   // http://stackoverflow.com/questions/19362993/how-to-combine-results-of-jquery-find-and-filter
@@ -25,7 +48,23 @@ function changeSourcecode() {
     $(this).html('<a name="' + id + '" class="anchor" href="#'+ id + '"><span class="octicon octicon-link"></span></a>' + innerHtml);
   });
   loadjscssfile("javascripts/script.js", "js");
-}
+  
+  $("solution").each(function(index){
+    var innerHtml = $(this).html();
+    var id = "solution" + index;
+    $(this).html('<a class="SolutionButton" onClick="toggleSolution(\'' + id + '\', this)">L&ouml;sung zeigen?</a>' + 
+                 '<div class="ClosedSolution" id="' + id + '">' + innerHtml + '</div>');
+  });
+  
+  $("hinweis").add($("hint")).each(function(index){
+    var innerHtml = $(this).html();
+    var id = "hint" + index;
+    $(this).html('<a class="HintButton" onClick="toggleHint(\'' + id + '\', this)">Hinweis zeigen?</a>' + 
+                 '<div class="ClosedSolution" id="' + id + '">' + innerHtml + '</div>');
+  });
+};
+
+
 
 readyToChangeTheDocument();
  
