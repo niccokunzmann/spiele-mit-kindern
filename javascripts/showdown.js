@@ -506,7 +506,7 @@ var _RunSpanGamut = function(text) {
 	text = _DoItalicsAndBold(text);
 
 	// Do hard breaks:
-	text = text.replace(/  +\n/g," <br />\n");
+	text = text.replace(/\n/g," <br />\n");
 
 	return text;
 }
