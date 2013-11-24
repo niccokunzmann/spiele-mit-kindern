@@ -1,4 +1,4 @@
-(function($) {
+
 $(document).ready(function(){
 
   // putting lines by the pre blocks
@@ -19,17 +19,17 @@ $(document).ready(function(){
     $(this).before("<pre class='lines'>" + lines.join("\n") + "</pre>");
   });
 
-  var headings = [];
-
-  var collectHeaders = function(){
-    headings.push({"top":$(this).offset().top - 15,"text":$(this).text()});
-  }
-
-  if($(".markdown-body h1").length > 1) $(".markdown-body h1").each(collectHeaders)
-  else if($(".markdown-body h2").length > 1) $(".markdown-body h2").each(collectHeaders)
-  else if($(".markdown-body h3").length > 1) $(".markdown-body h3").each(collectHeaders)
-
   $(window).scroll(function(){
+    // scrolling the headings
+    var headings = [];
+    
+    if($(".markdown-body h1").length > 1) $(".markdown-body h1").each(collectHeaders)
+    else if($(".markdown-body h2").length > 1) $(".markdown-body h2").each(collectHeaders)
+    else if($(".markdown-body h3").length > 1) $(".markdown-body h3").each(collectHeaders)
+
+    var collectHeaders = function(){
+      headings.push({"top":$(this).offset().top - 15,"text":$(this).text()});
+    }
     if(headings.length==0) return true;
     var scrolltop = $(window).scrollTop() || 0;
     if(headings[0] && scrolltop < headings[0].top) {
@@ -49,4 +49,3 @@ $(document).ready(function(){
     return false;
   })
 });
-})(jQuery)
