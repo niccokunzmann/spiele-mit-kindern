@@ -82,7 +82,7 @@ Der Ball ist ein Objekt, das man rumschieben und mit der Maus anfassen kann. Jed
 
 ![Ball Verhalten geben](images/tutorial/06-BallVerhalten.png)
 
-Den Ball bewegen
+Den Ball Bewegen
 ================
 
 Damit der Ball selbst was macht (hüstel: automatisches, eigenständiges Verhalten), öffnen wir die Kategorie **Scripte**.
@@ -111,7 +111,7 @@ Wenn sich der Ball erstmal bewegt, ist 0 keine sehr spannende Richtung.
 
 Der Ball ist fertig.
 
-Das Projekt speichern
+Das Projekt Speichern
 =====================
 
 ![Auf den rechten Ordner klicken und speichern.](images/tutorial/12-ProjektSpeichern.png)
@@ -121,6 +121,49 @@ Das Projekt speichern
 Immer speichern, wenn du das Gefühl hast, etwas geschafft zu haben, was du nicht nochmal neu machen möchtest. Das klappt bei mir ganz gut.
 
 Jetzt ist der Projektstand im Ordner **Etoys** gespeichert. Dieser befindet sich neben dem Ordner **Etoys-To-Go 5.0.app**. [Solltest du eine installierte Version haben, ist der Ordner **Etoys** im Dokumente-Verzeichnis.] Alle weiteren Speicherstände werden dort abgespeichert. Wenn du jemandem dein Spiel gibst, gibst du ihm am Besten gleich beide Ordner. Wenn er auch Etoys hat, reicht deine letzte Projekt-Datei, die bei mir gerade **Pong.001.pr** heißt. Die Zahl am Ende wird hochgezählt wenn gespeichert wird.
+
+Einen Schieber erstellen
+========================
+
+Wenn wir erstmal einen Schieber haben, können wir ihn duplizieren. Das geht schneller, als zwei zugleich zu bauen.
+
+Nachdem wir einen Schieber gemalt haben, [wie wir einen Ball gemalt haben](#ballerstellen), können wir den in der Größe verändern:
+
+1. ![Schieber Größe verändern](images/tutorial/14-SchieberMalen.png) 2. ![SchieberLinks benennen](images/tutorial/15-SchieberBenennen.png) und richtig nennen.
+
+Den Schieber bewegen
+====================
+
+Das funktioniert wie [den Ball zu bewegen](denballbewegen).
+So soll es dann aussehen: 
+
+![Der Schieber bewegt sich nach oben](images/tutorial/152-SchieberBewegen.png)
+
+Was auch geht, aber bei größeren Projekten stört, ist, dass der Ball den Schieber bewegt:
+
+![](images/tutorial/153-SchieberNicchtSoGutBewegen.png)
+
+Schlecht, weil der Schieber das selbst entscheiden sollte, was er tut. Dann  kann man viel leichter herausfinden, warum etwas gerade nicht geht. 
+
+Ja, der bewegt sich nur nach oben. Aber das soll er nur tun, wenn eine Taste gedrückt wird. Also machen wir zuerst "eine Taste gedrückt wird", und dann machen wir das "wenn".
+
+Tastaturanschläge erkennen
+==========================
+
+Da gemalte Objekte selbst keine Tastaturanschläge erkennen können, holen wir uns ein **Key Press Objekt** [Key Press = Englisch Tasten-Druck].
+
+![Key Press holen](images/tutorial/16-KeyPressHolen.png)
+
+In den KeyPress schauen wir jetzt rein. ![Auge](images/tutorial/auge.png). Man kann es auch oben in der Seitenleiste umbenennen.
+Objekte sollten immer so heißen, wie das was sie tun/was sie sind. Dieser KeyPress soll den Schieber nach oben bewegen. Die Kategorie Eingabe erreichst du indem du das tust, was du schon [beim Auge Bewegen](denballbewegen)  geklickt hast.
+
+![Key Press inspekten](images/tutorial/17-KeyPressInspekten.png)
+
+Was verändert sich, wenn du die Taste drückst? 
+
+So sieht es jetzt bei mir aus. **Ball bewegen** und **SchieberLinks bewegen** liegen rum, ich habe den **SchieberLinksHoch** inspiziert und auf die orange Box ![](images/tutorial/OrangeBox.png) geklickt:
+
+![](images/tutorial/18-TestEinfuegen.png)
 
 
 
