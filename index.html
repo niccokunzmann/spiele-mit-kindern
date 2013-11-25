@@ -266,7 +266,7 @@ In den Kategorien **Tests**, **Beobachtung** und **Scripte** kann man diese Baut
 
 ![](images/tutorial/27-Bauteile.png)
 
-![Die Ball Kachen](images/tutorial/BallKachel.png) gibt es in ![der orangen Box](images/tutorial/OrangeBox.png) und durch ![](images/tutorial/kachel.png).
+![Die Ball Kacheln](images/tutorial/BallKachel.png) gibt es in ![der orangen Box](images/tutorial/OrangeBox.png) und durch ![](images/tutorial/kachel.png).
 
 Damit stecke ich das Abprallen am **SchieberLinks** zusammen.
 
@@ -299,11 +299,54 @@ Wenn der Ball hinter einen Schieber kommt, sollen die Punkte für den anderen ho
 
 Ich nenne den Text **PunkteRechts**. Den Zahlenwert brauchen wir.
 
-Außerdem brauchen wir die Ränder. Die können schöner aussehen, mache ich es, dass es zwei Rechtecke gibt, die **LinkerRand** und **RechterRand** heißen:
+Außerdem brauchen wir die Ränder. Die können schöner aussehen. Es sind zwei Rechtecke, die **LinkerRand** und **RechterRand** heißen:
 
 ![](images/tutorial/33-Raender.png)
 
 Die Rechtecke gibt es im Lager.
 
+Um den Zahlenwert um 1 zu erhöhen, kann man folgendes machen:
+
+![](images/tutorial/34-ZahlenwertErhoehen.png) ![](images/tutorial/35-ZahlenwertErhoehen.png)
+
+Mit diesen Sachen kann man schon eine Punkteanzeige bauen:
+
+![](images/tutorial/35-ZahlenwertErhoehen.png) ![](images/tutorial/36-LinkerRand.png) ![](images/tutorial/36-RechterRand.png)
+![](images/tutorial/29-BeideSchieber.png)
+
+<hinweis>
+Benutze Tests aus ![der orangen Box](images/tutorial/OrangeBox.png). Durch ![](images/tutorial/kachel.png) (mit Rechtsklick auf die Objekte) erhältst du die erforderlichen Kacheln. 
+Nutze die Bausteine aus dem Ball-Skript oder den Kategorien **Tests**, **Beobachtung** und eventuell **Scripte**.
+</hinweis>
+
+<solution>
+So habe ich das gemacht.
+![](images/tutorial/37-Loesung.png)
+</solution>
+
+Es entsteht ein neues Problem: der Ball hat bei mir gerade 32 Punte vergeben. es sollte aber nur einer sein. Man kann das Problem lösen, 
+
+1. indem man nur 1 Mal den Wert erhöht, solange der Ball den Schieber berührt. Dadurch müsste man sich aber merken, ob man schonmal hochgezählt hat,
+2. indem der Ball wieder in die Mitte gesetzt wird. 
+
+Ich mag Nummer 2.
+
+Ball Zurück Setzen
+==================
+
+Um den Ball zurück in die Mitte zu setzen, braucht man die Position der Mitte.
+In der Kategorie **Mehr Geometrie** befindet sich die Position des Balles und wenn wir ihn in die Mitte tun, auch die Position der Mitte.
+
+![](images/tutorial/38-PositionBestimmen.png)
+
+Indem ich den ![Zuweisungspfeil](images/tutorial/Zuweisungspfeil.png) anfasse, ziehe ich die Zuweisung hinaus und füge in das Ball-Script ein.
+
+<hinweis>
+2 Mal.
+</hinweis>
+
+<solution>
+![](images/tutorial/39-BallGehtInDieMitte.png)
+</solution>
 
 </body></html>
