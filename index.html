@@ -254,7 +254,7 @@ Schaue, wie wir es [vorher](#schiebersteuern) gemacht haben.
 Ball Am Schieber Abprallen 
 ==========================
 
-Der Ball soll so am Schieber abprallen, wenn er den Schieber berührt. Die schwarz-weiße Richtung heißt **Schiebers Richtung zu Ball**.
+Der Ball soll wie im folgenden Bild am Schieber abprallen, wenn er den Schieber berührt. Die schwarz-weiße Richtung heißt **Schiebers Richtung zu Ball**.
 
 ![](images/tutorial/28-Hinweis.png)
 
@@ -284,10 +284,26 @@ Das gleiche kann man noch für den anderen Schieber machen. Diesmal kann man dup
 ![](images/tutorial/29-BeideSchieber.png)
 </solution>
 
-Manchmal prallt der Ball unschön ab und geht ewig hin und her. Das liegt daran, wo die Mitte des Schiebers liegt, da die Richtung von der Mitte aus berechnet wird. Die Mitte kann man aber verschieben.
+Manchmal prallt der Ball unschön oben oder unten ab und geht ewig hin und her. Das liegt daran, wo die Mitte des Schiebers liegt, da die Richtung von der Mitte aus berechnet wird. Die Mitte kann man aber verschieben:
 
-<hinweis>
 ![](images/tutorial/30-MitteVerschieben.png)
-</hinweis>
+ 
+[Speichern?](#dasprojektspeichern)
+
+Punkte Zählen
+=============
+
+Wenn der Ball hinter einen Schieber kommt, sollen die Punkte für den anderen hochgezählt werden. Wir brauchen dazu ein Text-Objekt. ![](images/tutorial/auge.png) Diese kann auch Zahlen anzeigen:
+
+![](images/tutorial/31-Text.png) ![](images/tutorial/32-TextInspizieren.png)
+
+Ich nenne den Text **PunkteRechts**. Den Zahlenwert brauchen wir.
+
+Außerdem brauchen wir die Ränder. Die können schöner aussehen, mache ich es, dass es zwei Rechtecke gibt, die **LinkerRand** und **RechterRand** heißen:
+
+![](images/tutorial/33-Raender.png)
+
+Die Rechtecke gibt es im Lager.
+
 
 </body></html>
