@@ -1,12 +1,13 @@
-spiele-mit-kindern
+﻿spiele-mit-kindern
 ==================
 
 Ziel ist es, mit MakeyMakey und EToys ein Spiel und einen Game-controller dafür zu bauen.
-
+Um mit Etoys ein eigenes Spiel zu bauen, gibt es hier ein [Tutorial](http://niccokunzmann.github.io/spiele-mit-kindern/).
+Verhaltensregeln beim Workshop: [OpenTechSchool coaching Guide](http://opentechschool.github.io/slides/presentations/coaching/)
 
 Zu Klären
 
-- Dauer: 4h
+- Dauer: 4h (Schüleraufmerksamkeitsspanne 45 Minuten -> Pause)
 - Altersgruppe : >= 10
 - Vorkenntnisse : Lesen können.
 - Ablaufplan
