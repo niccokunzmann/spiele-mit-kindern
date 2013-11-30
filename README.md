@@ -3,7 +3,7 @@
 
 Ziel ist es, mit MakeyMakey und EToys ein Spiel und einen Game-controller dafür zu bauen.
 Um mit Etoys ein eigenes Spiel zu bauen, gibt es hier ein [Tutorial](http://niccokunzmann.github.io/spiele-mit-kindern/).
-Verhaltensregeln beim Workshop: [OpenTechSchool coaching Guide](http://opentechschool.github.io/slides/presentations/coaching/)
+[Quellen](quellen/README.md)
 
 Zu Klären
 
