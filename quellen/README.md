@@ -4,6 +4,6 @@
 
 [Tutorials from Freemor](https://archive.org/search.php?query=freemor)
 
-[Lehrmaterialien etoys](http://www.columbusschoolforgirls.net/etoys/)
+[Lehrmaterialien Etoys von der Columbus School](http://www.columbusschoolforgirls.net/etoys/)
 
 Verhaltensregeln beim Workshop: [OpenTechSchool coaching Guide](http://opentechschool.github.io/slides/presentations/coaching/)
