@@ -7,7 +7,7 @@ import socket
 class MyRequestHandler(http_server.SimpleHTTPRequestHandler):
     extensions_map = http_server.SimpleHTTPRequestHandler.extensions_map.copy()
     extensions_map.update({
-        '.md': 'text/html',
+        '.md': 'text/plain',
         })
 
 print('Url: http://localhost:8000/')
