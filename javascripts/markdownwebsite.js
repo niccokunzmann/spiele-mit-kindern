@@ -44,6 +44,8 @@ loadjscssfile("javascripts/jquery.min.js", "js");
 loadjscssfile("javascripts/showdown.js", "js");
 // change the markdown body to html
 loadjscssfile("javascripts/changethewebsite.js", "js");
+// load feedback mechanism
+loadjscssfile("javascripts/feedback.js", "js");
 
 /** 
  * 
