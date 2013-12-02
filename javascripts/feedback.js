@@ -1,9 +1,31 @@
 
-var editSelectionDiv;
 
 $(document).ready(function() {
   
 });
+
+var selectionEditNodeId = 'i_am_the_selection_edit_node'
+
+function setupSelectionEditNode() {
+  // http://www.dustindiaz.com/add-and-remove-html-elements-dynamically-with-javascript/
+  var newdiv = document.createElement('div');
+  newdiv.setAttribute('id', selectionEditNodeId);
+  // https://github.com/niccokunzmann/tannenhof/blob/master/website/drawLine.js
+  // "<div class=\"floatingImageDiv\" id=\"floatingImageDiv\" style=\"top: " + top + "px ; left: " + left + "px;\"><img src=\"" + url + "\" width=\"" + imageWidth + "\"/></div>";
+
+  ni.appendChild(newdiv);
+
+}
+}
+
+function editTheSelectionNode() {
+  node = $(selectionEditNodeId);
+  if (node.length == 0) {
+    setupSelectionEditNode();
+  }
+  return $(selectionEditNodeId);
+  
+}
 
 ////////////////////////////////////////////////////////////////////////////////////
 //
