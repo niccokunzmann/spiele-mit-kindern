@@ -304,7 +304,7 @@ var _StripLinkDefinitions = function(text) {
 			}
 
 			// Completely remove the definition from the text
-			return "";
+			return "<div class=\"showdownlinkdefinition\" originalmarkdown=\"" + escape(wholeMatch) + "\"></div>";
 		}
 	);
 
@@ -463,10 +463,9 @@ var _RunBlockGamut = function(text) {
 	text = _DoHeaders(text);
 
 	// Do Horizontal Rules:
-	var key = hashBlock("<hr />");
-	text = text.replace(/^[ ]{0,2}([ ]?\*[ ]?){3,}[ \t]*$/gm,key);
-	text = text.replace(/^[ ]{0,2}([ ]?\-[ ]?){3,}[ \t]*$/gm,key);
-	text = text.replace(/^[ ]{0,2}([ ]?\_[ ]?){3,}[ \t]*$/gm,key);
+	text = text.replace(/^[ ]{0,2}([ ]?\*[ ]?){3,}[ \t]*$/gm,hashBlockReplacement);
+	text = text.replace(/^[ ]{0,2}([ ]?\-[ ]?){3,}[ \t]*$/gm,hashBlockReplacement);
+	text = text.replace(/^[ ]{0,2}([ ]?\_[ ]?){3,}[ \t]*$/gm,hashBlockReplacement);
 
 	text = _DoLists(text);
 	text = _DoCodeBlocks(text);
@@ -482,6 +481,9 @@ var _RunBlockGamut = function(text) {
 	return text;
 };
 
+var hashBlockReplacement = function (wholeMatch, m1) {
+  return hashBlock("<hr originalmarkdown=\"" + escape(wholeMatch) + "\"/>");
+};
 
 var _RunSpanGamut = function(text) {
 //
@@ -641,7 +643,7 @@ var writeAnchorTag = function(wholeMatch,m1,m2,m3,m4,m5,m6,m7) {
 				// Special case for explicit empty url
 				url = "";
 			} else {
-				return whole_match;
+				return wholeMatch;
 			}
 		}
 	}
@@ -655,7 +657,7 @@ var writeAnchorTag = function(wholeMatch,m1,m2,m3,m4,m5,m6,m7) {
 		result +=  " title=\"" + title + "\"";
 	}
 
-	result += ">" + link_text + "</a>";
+	result += " originalmarkdown=\"" + escape(wholeMatch) + "\">" + link_text + "</a>";
 
 	return result;
 }
@@ -742,7 +744,7 @@ var writeImageTag = function(wholeMatch,m1,m2,m3,m4,m5,m6,m7) {
 			}
 		}
 		else {
-			return whole_match;
+			return wholeMatch;
 		}
 	}
 
@@ -759,7 +761,7 @@ var writeImageTag = function(wholeMatch,m1,m2,m3,m4,m5,m6,m7) {
 		result +=  " title=\"" + title + "\"";
 	//}
 
-	result += " />";
+	result += "  originalmarkdown=\"" + escape(wholeMatch) + "\"/>";
 
 	return result;
 }
@@ -775,10 +777,12 @@ var _DoHeaders = function(text) {
 	//	--------
 	//
 	text = text.replace(/^(.+)[ \t]*\n=+[ \t]*\n+/gm,
-		function(wholeMatch,m1){return hashBlock('<h1 id="' + headerId(m1) + '">' + _RunSpanGamut(m1) + "</h1>");});
+		function(wholeMatch,m1){return hashBlock('<h1 id="' + headerId(m1) + '" originalmarkdown="' + escape(wholeMatch) + '">' + _RunSpanGamut(m1) + "</h1>");});
 
 	text = text.replace(/^(.+)[ \t]*\n-+[ \t]*\n+/gm,
-		function(matchFound,m1){return hashBlock('<h2 id="' + headerId(m1) + '">' + _RunSpanGamut(m1) + "</h2>");});
+		function(wholeMatch,m1){
+      return hashBlock('<h2 id="' + headerId(m1) + '" originalmarkdown="' + escape(wholeMatch) + '">' + _RunSpanGamut(m1) + "</h2>");
+    });
 
 	// atx-style headers:
 	//  # Header 1
@@ -802,7 +806,7 @@ var _DoHeaders = function(text) {
 	text = text.replace(/^(\#{1,6})[ \t]*(.+?)[ \t]*\#*\n+/gm,
 		function(wholeMatch,m1,m2) {
 			var h_level = m1.length;
-			return hashBlock("<h" + h_level + ' id="' + headerId(m2) + '">' + _RunSpanGamut(m2) + "</h" + h_level + ">");
+			return hashBlock("<h" + h_level + ' id="' + headerId(m2) + '"originalmarkdown="' + escape(wholeMatch) + '">' + _RunSpanGamut(m2) + "</h" + h_level + ">");
 		});
 
 	function headerId(m) {
@@ -863,7 +867,7 @@ var _DoLists = function(text) {
 			// HTML block parser. This is a hack to work around the terrible
 			// hack that is the HTML block parser.
 			result = result.replace(/\s+$/,"");
-			result = "<"+list_type+">" + result + "</"+list_type+">\n";
+			result = "<"+list_type+' originalmarkdown="' + escape(wholeMatch) + '">' + result + "</"+list_type+">\n";
 			return result;
 		});
 	} else {
@@ -877,7 +881,7 @@ var _DoLists = function(text) {
 			// paragraph for the last item in a list, if necessary:
 			var list = list.replace(/\n{2,}/g,"\n\n\n");;
 			var result = _ProcessListItems(list);
-			result = runup + "<"+list_type+">\n" + result + "</"+list_type+">\n";
+			result = runup + "<"+list_type+' originalmarkdown="' + escape(wholeMatch) + '">\n' + result + "</"+list_type+">\n";
 			return result;
 		});
 	}
@@ -948,7 +952,7 @@ _ProcessListItems = function(list_str) {
 				item = _RunSpanGamut(item);
 			}
 
-			return  "<li>" + item + "</li>\n";
+			return  '<li originalmarkdown="' + escape(wholeMatch) + '">' + item + "</li>\n";
 		}
 	);
 
@@ -991,7 +995,7 @@ var _DoCodeBlocks = function(text) {
 			codeblock = codeblock.replace(/^\n+/g,""); // trim leading newlines
 			codeblock = codeblock.replace(/\n+$/g,""); // trim trailing whitespace
 
-			codeblock = "<pre><code>" + codeblock + "\n</code></pre>";
+			codeblock = '<pre originalmarkdown="' + escape(wholeMatch) + '"><code originalmarkdown="' + escape(wholeMatch) + '">' + codeblock + "\n</code></pre>";
 
 			return hashBlock(codeblock) + nextChar;
 		}
@@ -1028,7 +1032,7 @@ var _DoGithubCodeBlocks = function(text) {
 			codeblock = codeblock.replace(/^\n+/g,""); // trim leading newlines
 			codeblock = codeblock.replace(/\n+$/g,""); // trim trailing whitespace
 
-			codeblock = "<pre><code" + (language ? " class=\"" + language + '"' : "") + ">" + codeblock + "\n</code></pre>";
+			codeblock = '<pre originalmarkdown="' + escape(wholeMatch) + '"><code' + (language ? " class=\"" + language + '"' : "") + ' originalmarkdown="' + escape(wholeMatch) + '">' + codeblock + "\n</code></pre>";
 
 			return hashBlock(codeblock);
 		}
@@ -1090,7 +1094,7 @@ var _DoCodeSpans = function(text) {
 			c = c.replace(/^([ \t]*)/g,"");	// leading whitespace
 			c = c.replace(/[ \t]*$/g,"");	// trailing whitespace
 			c = _EncodeCode(c);
-			return m1+"<code>"+c+"</code>";
+			return m1+'<code originalmarkdown="' + escape(wholeMatch) + '">'+c+"</code>";
 		});
 
 	return text;
@@ -1129,12 +1133,21 @@ var _EncodeCode = function(text) {
 
 var _DoItalicsAndBold = function(text) {
 
+  // '*' => '%2a'
+  // '_' => '%5f'
+
 	// <strong> must go first:
 	text = text.replace(/(\*\*|__)(?=\S)([^\r]*?\S[*_]*)\1/g,
-		"<strong>$2</strong>");
+		function (wholeMatch, m1, m2, m3) {
+      // todo: escape must be changed so it does not give matches in the text
+      return '<strong originalmarkdown="' + escape(wholeMatch).replace('*', '%2a', 'g').replace('_', '%5f', 'g') + '">' + m2 + "</strong>";
+    });
 
 	text = text.replace(/(\*|_)(?=\S)([^\r]*?\S)\1/g,
-		"<em>$2</em>");
+    function (wholeMatch, m1, m2, m3) {
+      return '<em originalmarkdown="' + escape(wholeMatch).replace('*', '%2a', 'g').replace('_', '%5f', 'g') + '">' + m2 + "</em>";
+    }
+		);
 
 	return text;
 }
@@ -1182,7 +1195,7 @@ var _DoBlockQuotes = function(text) {
 					return pre;
 				});
 
-			return hashBlock("<blockquote>\n" + bq + "\n</blockquote>");
+			return hashBlock('<blockquote originalmarkdown="' + escape(wholeMatch) + '">\n' + bq + "\n</blockquote>");
 		});
 	return text;
 }
@@ -1214,7 +1227,10 @@ var _FormParagraphs = function(text) {
 		}
 		else if (str.search(/\S/) >= 0) {
 			str = _RunSpanGamut(str);
-			str = str.replace(/^([ \t]*)/g,"<p>");
+			str = str.replace(/^([ \t]*)/g, 
+        function(wholeMatch, m1) {
+          return '<p>'//'<p originalmarkdown="' + escape(str) + '">';
+        });
 			str += "</p>"
 			grafsOut.push(str);
 		}
@@ -1276,7 +1292,12 @@ var _EncodeBackslashEscapes = function(text) {
 
 var _DoAutoLinks = function(text) {
 
-	text = text.replace(/<((https?|ftp|dict):[^'">\s]+)>/gi,"<a href=\"$1\">$1</a>");
+  //alert(text);
+	text = text.replace(/<((https?|ftp|dict):[^'">\s]+)>/gi,
+    function (wholeMatch, m1, m2) {
+      // Todo: I can not tell why but somehow this does not work!
+      return "<a href=\"" + m1 + "\" originalmarkdown=\"" + escape(wholeMatch) + "\">" + m1 + "</a>";
+    });
 
 	// Email addresses: <address@domain.foo>
 
@@ -1294,7 +1315,7 @@ var _DoAutoLinks = function(text) {
 	*/
 	text = text.replace(/<(?:mailto:)?([-.\w]+\@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)>/gi,
 		function(wholeMatch,m1) {
-			return _EncodeEmailAddress( _UnescapeSpecialChars(m1) );
+			return _EncodeEmailAddress( _UnescapeSpecialChars(m1) , wholeMatch);
 		}
 	);
 
@@ -1302,7 +1323,7 @@ var _DoAutoLinks = function(text) {
 }
 
 
-var _EncodeEmailAddress = function(addr) {
+var _EncodeEmailAddress = function(addr, wholeMatch) {
 //
 //  Input: an email address, e.g. "foo@example.com"
 //
@@ -1343,7 +1364,8 @@ var _EncodeEmailAddress = function(addr) {
 		return ch;
 	});
 
-	addr = "<a href=\"" + addr + "\">" + addr + "</a>";
+  // todo: save the email address from bad crawlers!
+	addr = "<a href=\"" + addr + "\" originalmarkdown=\"" + escape(wholeMatch).replace('@', '%40', 'g') + "\">" + addr + "</a>";
 	addr = addr.replace(/">.+:/g,"\">"); // strip the mailto: from the visible part
 
 	return addr;
