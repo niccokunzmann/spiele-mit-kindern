@@ -1,15 +1,27 @@
 
-
-function copySelectionTo(domElement) {
-  nodes = getSelectedTextNodes()
-  for (var i = 0; i < nodes.length; i+= 1) {
-    // from http://api.jquery.com/clone/
-    // $( ".hello" ).clone().appendTo( ".goodbye" );
-    $( nodes[i] ).clone().appendTo( domElement );
+function getMarkdownFromNodes(nodes) {
+  var markdown = '';
+  for (var i = 0; i < nodes.length; i++) {
+    var node = nodes[i];
+    var nodeMarkdown = $(node).attr('originalmarkdown');
+    if (nodeMarkdown == undefined) {
+      if (node.nodeType == 3) {
+        // text node 
+        // from http://stackoverflow.com/questions/4398526/how-can-i-find-all-text-nodes-between-to-element-nodes-with-javascript-jquery
+        nodeMarkdown = node.nodeValue;
+      } else {
+        nodeMarkdown = getMarkdownFromNodes(node.childNodes);
+      };
+    } else { 
+      nodeMarkdown = unescape(nodeMarkdown);
+    }
+    markdown += nodeMarkdown;
   }
-  return true;
+  return markdown;
 }
 
+// posted on github
+// https://github.com/niccokunzmann/spiele-mit-kindern/blob/gh-pages/javascripts/feedback.js
 function getSelectedNodes() {
   // from https://developer.mozilla.org/en-US/docs/Web/API/Selection
   var selection = window.getSelection();
@@ -52,7 +64,8 @@ function get_common_ancestor(a, b)
 
 function isDescendant(parent, child) {
      // from http://stackoverflow.com/questions/2234979/how-to-check-in-javascript-if-one-element-is-a-child-of-another
-     var node = child.parentNode;
+     // node is decendant from itself. this is important for getNodesBetween
+     var node = child;
      while (node != null) {
          if (node == parent) {
              return true;
@@ -73,6 +86,7 @@ function getNodesBetween(rootNode, node1, node2) {
         isBetweenNodes = false;
       }
       resultNodes.push(rootNode.childNodes[i]);
+      
     } else if (resultNodes.length == 0) {
     } else if (isBetweenNodes) {
       resultNodes.push(rootNode.childNodes[i]);
@@ -82,7 +96,10 @@ function getNodesBetween(rootNode, node1, node2) {
   };
   if (resultNodes.length == 0) {
     return [rootNode];
+  } else if (isDescendant(resultNodes[resultNodes.length - 1], node1) || isDescendant(resultNodes[resultNodes.length - 1], node2)) {
+    return resultNodes;
   } else {
+    //return resultNodes;
     // same child node for both should never happen
     return [resultNodes[0]];
   }
