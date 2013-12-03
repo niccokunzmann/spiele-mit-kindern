@@ -1229,7 +1229,7 @@ var _FormParagraphs = function(text) {
 			str = _RunSpanGamut(str);
 			str = str.replace(/^([ \t]*)/g, 
         function(wholeMatch, m1) {
-          return '<p>'//'<p originalmarkdown="' + escape(str) + '">';
+          return m1 + '<p>'//'<p originalmarkdown="' + escape(str) + '">';
         });
 			str += "</p>"
 			grafsOut.push(str);

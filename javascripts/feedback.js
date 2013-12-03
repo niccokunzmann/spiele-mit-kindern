@@ -13,7 +13,21 @@ var editAreaId = 0;
 
 function editSelection() {
   var nodes = getSelectedNodes();
+  saveEdit();
   setupEditArea(nodes);
+  hideSelectionEditNode();
+}
+
+function saveEdit() {
+  $('.liveEditHTMLContent').each(function (index) {
+    while (this.childNodes.length > 0) {
+      this.parentNode.parentNode.insertBefore(this.removeChild(this.childNodes[0]), this.parentNode);
+    }
+  });
+  $('.editArea').each(function (index) {
+    this.parentNode.removeChild(this);
+  });
+  changeSourcecode();
 }
 
 function setupEditArea(nodes) {
@@ -22,12 +36,16 @@ function setupEditArea(nodes) {
   id = editAreaId;
   var newDiv = document.createElement('div');
   newDiv.setAttribute('class', 'editArea');
-  var liveDiv = document.createElement('div');
-  liveDiv.setAttribute('class', 'liveEditHTMLContent');
-  newDiv.appendChild(liveDiv);
-  var textarea = document.createElement('textarea');
-  textarea.setAttribute('class', 'liveEditTextArea');
-  newDiv.appendChild(textarea);
+    var liveDiv = document.createElement('div');
+    liveDiv.setAttribute('class', 'liveEditHTMLContent');
+    newDiv.appendChild(liveDiv);
+    var saveChangesDiv = document.createElement('div');
+    saveChangesDiv.setAttribute('class', 'saveChanges');
+    saveChangesDiv.innerHTML = '<a href="javascript:saveEdit()">speichern</a>';
+    newDiv.appendChild(saveChangesDiv);
+    var textarea = document.createElement('textarea');
+    textarea.setAttribute('class', 'liveEditTextArea');
+    newDiv.appendChild(textarea);
   var update = function() {
     var markdownText = $(textarea).val();
     $(liveDiv).html(markdownToHtml(markdownText));
@@ -42,7 +60,7 @@ function setupEditArea(nodes) {
   var markdownText = getMarkdownFromNodes(nodes);
   $(textarea).val(markdownText);
   $(textarea).keyup(update);
-  newDiv.setAttribute('originalMarkdown', escape(markdownText));
+  //newDiv.setAttribute('originalMarkdown', escape(markdownText));
   update();
 }
 
@@ -52,7 +70,7 @@ function setupSelectionEditNode() {
   newdiv.setAttribute('id', selectionEditNodeId);
   newdiv.setAttribute('class', 'hiddenEditContainer');
   // https://github.com/niccokunzmann/tannenhof/blob/master/website/drawLine.js
-  newdiv.innerHTML = '<a href="javascript:editSelection()">editieren</a>';
+  newdiv.innerHTML = '<a href="javascript:editSelection()" id="editSelectionLink">editieren</a>';
   document.body.appendChild(newdiv);
 }
 
@@ -63,16 +81,20 @@ function getSelectionEditNode() {
   return $('#' + selectionEditNodeId);
 }
 
+function hideSelectionEditNode() {
+  getSelectionEditNode().attr('class', 'hiddenEditContainer');
+}
+
 function setSelectionEditNodePosition(x, y) {
   var node = getSelectionEditNode();
   var selection = window.getSelection();
   var IwantToEditTheSelectedText = !(selection == undefined || selection.isCollabsed || selection.toString() == '');
   if (IwantToEditTheSelectedText) { 
     node.attr('class', 'floatingEditContainer');
-    node.css('top', y + 'px');
+    node.css('top', (y + 3) + 'px');
     node.css('left', x + 'px');
   } else {
-    node.attr('class', 'hiddenEditContainer');
+    hideSelectionEditNode();
   }
   return IwantToEditTheSelectedText;
 }
@@ -93,6 +115,8 @@ document.body.onmouseup = setSelectionEditNodePositionEvent;
 // var markdownText = getMarkdownFromNodes(getSelectedNodes());
 //
 
+var includeNodeNamesIntoMarkdown = ['solution', 'hinweis', 'hint'];
+
 function getMarkdownFromNodes(nodes) {
   var markdown = '';
   for (var i = 0; i < nodes.length; i++) {
@@ -103,6 +127,8 @@ function getMarkdownFromNodes(nodes) {
         // text node 
         // from http://stackoverflow.com/questions/4398526/how-can-i-find-all-text-nodes-between-to-element-nodes-with-javascript-jquery
         nodeMarkdown = node.nodeValue;
+      } else if (arrayContainsNodeName(includeNodeNamesIntoMarkdown, node.nodeName)) {
+        nodeMarkdown = '<' + node.nodeName.toLowerCase() + '>' + getMarkdownFromNodes(node.childNodes) + '</' + node.nodeName.toLowerCase() + '>';
       } else {
         nodeMarkdown = getMarkdownFromNodes(node.childNodes);
       };
@@ -112,6 +138,18 @@ function getMarkdownFromNodes(nodes) {
     markdown += nodeMarkdown;
   }
   return markdown.replace(/\n\n\n+/g, '\n\n');
+}
+
+function arrayContainsNodeName(a, string) {
+    // http://stackoverflow.com/a/237176/1320237
+    var test = string.toLowerCase();
+    var i = a.length;
+    while (i--) {
+       if (a[i].toLowerCase() == test) {
+           return true;
+       }
+    }
+    return false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

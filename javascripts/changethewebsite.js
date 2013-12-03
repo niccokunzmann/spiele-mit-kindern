@@ -34,6 +34,8 @@ function toggleHint(id, link) {
   toggleHiddenDiv(id, link, "Hinweis verstecken!", "Hinweis zeigen?");
 };
 
+var loadedScriptFile = false;
+
 function changeSourcecode() {
   // http://api.jquery.com/find/
   // http://stackoverflow.com/questions/19362993/how-to-combine-results-of-jquery-find-and-filter
@@ -41,15 +43,23 @@ function changeSourcecode() {
   var markdownHeadings = $( "markdown-body" ).find( allHeadings );
   //// http://stackoverflow.com/questions/2402707/how-to-get-all-child-inputs-of-a-div-element-jquery
   allHeadings.each( function (index){
+    if ($(this).attr('wasChanged') == 'true') { return; }
+    $(this).attr('wasChanged', 'true');
     // http://api.jquery.com/html/
     var innerHtml = $(this).html();
     // http://www.tequilafish.com/2007/12/04/jquery-how-to-get-the-id-of-your-current-object/
     var id = $(this).attr('id');
     $(this).html('<a name="' + id + '" class="anchor" href="#'+ id + '"><span class="octicon octicon-link"></span></a>' + innerHtml);
   });
-  loadjscssfile("javascripts/script.js", "js");
+  
+  if (!loadedScriptFile) {
+    loadjscssfile("javascripts/script.js", "js");
+    loadedScriptFile = true;
+  }
   
   $("solution").each(function(index){
+    if ($(this).attr('wasChanged') == 'true') { return; }
+    $(this).attr('wasChanged', 'true');
     var innerHtml = $(this).html();
     var id = "solution" + index;
     $(this).html('<a class="SolutionButton" originalmarkdown="" onClick="toggleSolution(\'' + id + '\', this)">L&ouml;sung zeigen?</a>' + 
@@ -57,6 +67,8 @@ function changeSourcecode() {
   });
   
   $("hinweis").add($("hint")).each(function(index){
+    if ($(this).attr('wasChanged') == 'true') { return; }
+    $(this).attr('wasChanged', 'true');
     var innerHtml = $(this).html();
     var id = "hint" + index;
     $(this).html('<a class="HintButton" originalmarkdown="" onClick="toggleHint(\'' + id + '\', this)">Hinweis zeigen?</a>' + 
