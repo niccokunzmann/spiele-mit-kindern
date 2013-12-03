@@ -1,0 +1,9 @@
+[submodule "python/uritemplate"]
+	path = python/uritemplate
+	url = git@github.com:sigmavirus24/uritemplate.git
+[submodule "python/requests"]
+	path = python/requests
+	url = git@github.com:kennethreitz/requests.git
+[submodule "python/github3.py"]
+	path = python/github3.py
+	url = git@github.com:sigmavirus24/github3.py.git
