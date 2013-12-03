@@ -19,7 +19,12 @@ function loadjscssfile(filename, filetype){
   document.getElementsByTagName("head")[0].appendChild(fileref);
 }
 
- function readyToChangeTheDocument() {  
+function markdownToHtml(markdownText) {
+  var converter = new Showdown.converter();
+  return converter.makeHtml(markdownText);
+}
+
+function readyToChangeTheDocument() {  
   /* look whether Showdown is loaded and jQuery
    * 
    * http://stackoverflow.com/questions/519145/how-can-i-check-whether-a-variable-is-defined-in-javascript
@@ -29,8 +34,8 @@ function loadjscssfile(filename, filetype){
     window.setTimeout(readyToChangeTheDocument, 50);
   } else {
     $(document).ready(function() {
-      var converter = new Showdown.converter();
-      $('body').html(headerString + converter.makeHtml($('body').html().replace('&gt;', '>', 'g')) + footerString);
+      
+      $('body').html(headerString + markdownToHtml($('body').html().replace('&gt;', '>', 'g')) + footerString);
       changeSourcecode();
     });
   }

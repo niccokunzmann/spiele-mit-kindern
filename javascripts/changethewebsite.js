@@ -52,14 +52,14 @@ function changeSourcecode() {
   $("solution").each(function(index){
     var innerHtml = $(this).html();
     var id = "solution" + index;
-    $(this).html('<a class="SolutionButton" onClick="toggleSolution(\'' + id + '\', this)">L&ouml;sung zeigen?</a>' + 
+    $(this).html('<a class="SolutionButton" originalmarkdown="" onClick="toggleSolution(\'' + id + '\', this)">L&ouml;sung zeigen?</a>' + 
                  '<div class="ClosedSolution" id="' + id + '">' + innerHtml + '</div>');
   });
   
   $("hinweis").add($("hint")).each(function(index){
     var innerHtml = $(this).html();
     var id = "hint" + index;
-    $(this).html('<a class="HintButton" onClick="toggleHint(\'' + id + '\', this)">Hinweis zeigen?</a>' + 
+    $(this).html('<a class="HintButton" originalmarkdown="" onClick="toggleHint(\'' + id + '\', this)">Hinweis zeigen?</a>' + 
                  '<div class="ClosedSolution" id="' + id + '">' + innerHtml + '</div>');
   });
 };

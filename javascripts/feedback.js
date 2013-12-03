@@ -1,219 +1,96 @@
 
+loadjscssfile("stylesheets/feedback.css", "css");
 
-$(document).ready(function() {
-  
-});
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// edit the markdown
+//
+// 
+//
 
-var selectionEditNodeId = 'i_am_the_selection_edit_node'
+var selectionEditNodeId = 'i_am_the_selection_edit_node';
+var editAreaId = 0;
+
+function editSelection() {
+  var nodes = getSelectedNodes();
+  setupEditArea(nodes);
+}
+
+function setupEditArea(nodes) {
+  if (nodes.length == 0) { return; };
+  editAreaId++;
+  id = editAreaId;
+  var newDiv = document.createElement('div');
+  newDiv.setAttribute('class', 'editArea');
+  var liveDiv = document.createElement('div');
+  liveDiv.setAttribute('class', 'liveEditHTMLContent');
+  newDiv.appendChild(liveDiv);
+  var textarea = document.createElement('textarea');
+  textarea.setAttribute('class', 'liveEditTextArea');
+  newDiv.appendChild(textarea);
+  var update = function() {
+    var markdownText = $(textarea).val();
+    $(liveDiv).html(markdownToHtml(markdownText));
+  };
+  // insert the div at the right place
+  nodes[0].parentNode.insertBefore(newDiv, nodes[0]);
+  for (var i = 0; i < nodes.length; i++) {
+    var node = nodes[i];
+    node.parentNode.removeChild(node);
+  };
+  // set the markdown text
+  var markdownText = getMarkdownFromNodes(nodes);
+  $(textarea).val(markdownText);
+  $(textarea).keyup(update);
+  newDiv.setAttribute('originalMarkdown', escape(markdownText));
+  update();
+}
 
 function setupSelectionEditNode() {
   // http://www.dustindiaz.com/add-and-remove-html-elements-dynamically-with-javascript/
   var newdiv = document.createElement('div');
   newdiv.setAttribute('id', selectionEditNodeId);
+  newdiv.setAttribute('class', 'hiddenEditContainer');
   // https://github.com/niccokunzmann/tannenhof/blob/master/website/drawLine.js
-  // "<div class=\"floatingImageDiv\" id=\"floatingImageDiv\" style=\"top: " + top + "px ; left: " + left + "px;\"><img src=\"" + url + "\" width=\"" + imageWidth + "\"/></div>";
-
-  ni.appendChild(newdiv);
-
-}
+  newdiv.innerHTML = '<a href="javascript:editSelection()">editieren</a>';
+  document.body.appendChild(newdiv);
 }
 
-function editTheSelectionNode() {
-  node = $(selectionEditNodeId);
-  if (node.length == 0) {
-    setupSelectionEditNode();
+function getSelectionEditNode() {
+  if ($('#' + selectionEditNodeId).length == 0) { 
+    setupSelectionEditNode(); 
+  };
+  return $('#' + selectionEditNodeId);
+}
+
+function setSelectionEditNodePosition(x, y) {
+  var node = getSelectionEditNode();
+  var selection = window.getSelection();
+  var IwantToEditTheSelectedText = !(selection == undefined || selection.isCollabsed || selection.toString() == '');
+  if (IwantToEditTheSelectedText) { 
+    node.attr('class', 'floatingEditContainer');
+    node.css('top', y + 'px');
+    node.css('left', x + 'px');
+  } else {
+    node.attr('class', 'hiddenEditContainer');
   }
-  return $(selectionEditNodeId);
-  
+  return IwantToEditTheSelectedText;
 }
 
-////////////////////////////////////////////////////////////////////////////////////
-//
-// get the position of an html element
-//
-// var offset = getOffset(node);
-// offset.top; offset.left; offset.width; offset.height
-//
-//
-//
-// http://www.codeproject.com/Articles/35737/Absolute-Position-of-a-DOM-Element
-//
+function setSelectionEditNodePositionEvent(e) {
+  // http://dev-notes.com/code.php?q=33
+	var x = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+	var y = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+  setSelectionEditNodePosition(x, y);
+};
 
-function __getIEVersion() {
-    var rv = -1; // Return value assumes failure.
-    if (navigator.appName == 'Microsoft Internet Explorer') {
-        var ua = navigator.userAgent;
-        var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-        if (re.exec(ua) != null)
-            rv = parseFloat(RegExp.$1);
-    }
-    return rv;
-}
-
-function __getOperaVersion() {
-    var rv = 0; // Default value
-    if (window.opera) {
-        var sver = window.opera.version();
-        rv = parseFloat(sver);
-    }
-    return rv;
-}
-
-var __userAgent = navigator.userAgent;
-var __isIE =  navigator.appVersion.match(/MSIE/) != null;
-var __IEVersion = __getIEVersion();
-var __isIENew = __isIE && __IEVersion >= 8;
-var __isIEOld = __isIE && !__isIENew;
-
-var __isFireFox = __userAgent.match(/firefox/i) != null;
-var __isFireFoxOld = __isFireFox && ((__userAgent.match(/firefox\/2./i) != null) || 
-	(__userAgent.match(/firefox\/1./i) != null));
-var __isFireFoxNew = __isFireFox && !__isFireFoxOld;
-
-var __isWebKit =  navigator.appVersion.match(/WebKit/) != null;
-var __isChrome =  navigator.appVersion.match(/Chrome/) != null;
-var __isOpera =  window.opera != null;
-var __operaVersion = __getOperaVersion();
-var __isOperaOld = __isOpera && (__operaVersion < 10);
-
-function __parseBorderWidth(width) {
-    var res = 0;
-    if (typeof(width) == "string" && width != null && width != "" ) {
-        var p = width.indexOf("px");
-        if (p >= 0) {
-            res = parseInt(width.substring(0, p));
-        }
-        else {
-     		//do not know how to calculate other values 
-		//(such as 0.5em or 0.1cm) correctly now
-    		//so just set the width to 1 pixel
-            res = 1; 
-        }
-    }
-    return res;
-}
-
-//returns border width for some element
-function __getBorderWidth(element) {
-	var res = new Object();
-	res.left = 0; res.top = 0; res.right = 0; res.bottom = 0;
-	if (window.getComputedStyle) {
-		//for Firefox
-		var elStyle = window.getComputedStyle(element, null);
-		res.left = parseInt(elStyle.borderLeftWidth.slice(0, -2));  
-		res.top = parseInt(elStyle.borderTopWidth.slice(0, -2));  
-		res.right = parseInt(elStyle.borderRightWidth.slice(0, -2));  
-		res.bottom = parseInt(elStyle.borderBottomWidth.slice(0, -2));  
-	}
-	else {
-		//for other browsers
-		res.left = __parseBorderWidth(element.style.borderLeftWidth);
-		res.top = __parseBorderWidth(element.style.borderTopWidth);
-		res.right = __parseBorderWidth(element.style.borderRightWidth);
-		res.bottom = __parseBorderWidth(element.style.borderBottomWidth);
-	}
-   
-	return res;
-}
-
-//returns the absolute position of some element within document
-function getElementAbsolutePos(element) {
-	var res = new Object();
-	res.x = 0; res.y = 0;
-	if (element !== null) { 
-		if (element.getBoundingClientRect) {
-			var viewportElement = document.documentElement;  
- 	        var box = element.getBoundingClientRect();
-		    var scrollLeft = viewportElement.scrollLeft;
- 		    var scrollTop = viewportElement.scrollTop;
-
-		    res.x = box.left + scrollLeft;
-		    res.y = box.top + scrollTop;
-
-		}
-		else { //for old browsers
-			res.x = element.offsetLeft;
-			res.y = element.offsetTop;
-
-			var parentNode = element.parentNode;
-			var borderWidth = null;
-
-			while (offsetParent != null) {
-				res.x += offsetParent.offsetLeft;
-				res.y += offsetParent.offsetTop;
-				
-				var parentTagName = 
-					offsetParent.tagName.toLowerCase();	
-
-				if ((__isIEOld && parentTagName != "table") || 
-					((__isFireFoxNew || __isChrome) && 
-						parentTagName == "td")) {		    
-					borderWidth = kGetBorderWidth
-							(offsetParent);
-					res.x += borderWidth.left;
-					res.y += borderWidth.top;
-				}
-				
-				if (offsetParent != document.body && 
-				offsetParent != document.documentElement) {
-					res.x -= offsetParent.scrollLeft;
-					res.y -= offsetParent.scrollTop;
-				}
-
-
-				//next lines are necessary to fix the problem 
-				//with offsetParent
-				if (!__isIE && !__isOperaOld || __isIENew) {
-					while (offsetParent != parentNode && 
-						parentNode !== null) {
-						res.x -= parentNode.scrollLeft;
-						res.y -= parentNode.scrollTop;
-						if (__isFireFoxOld || __isWebKit) 
-						{
-						    borderWidth = 
-						     kGetBorderWidth(parentNode);
-						    res.x += borderWidth.left;
-						    res.y += borderWidth.top;
-						}
-						parentNode = parentNode.parentNode;
-					}    
-				}
-
-				parentNode = offsetParent.parentNode;
-				offsetParent = offsetParent.offsetParent;
-			}
-		}
-	}
-    return res;
-}
-
-function _getOffset( el ) { 
-    // from http://stackoverflow.com/questions/8672369/how-to-draw-a-line-between-two-divs
-    // return element top, left, width, height
-    var _w = el.offsetWidth|0;
-    var _h = el.offsetHeight|0;
-    var pos = getElementAbsolutePos(el);
-    var _x = pos.x;
-    var _y = pos.y;        
-    return { top: _y, left: _x, width: _w, height: _h };
-}
-
-function getOffset(el) {
-        var pos1 = _getOffset(el);
-        var pos2 = _getOffset(document.body);
-        return {
-                top: (pos1.top - pos2.top),
-                left: (pos1.left),
-                width: (pos1.width),
-                height: (pos1.height)
-                };
-}
+document.body.onmouseup = setSelectionEditNodePositionEvent;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // get the markdown text
 //
-// var makrdownText = getMarkdownFromNodes(getSelectedNodes());
+// var markdownText = getMarkdownFromNodes(getSelectedNodes());
 //
 
 function getMarkdownFromNodes(nodes) {
@@ -234,7 +111,7 @@ function getMarkdownFromNodes(nodes) {
     }
     markdown += nodeMarkdown;
   }
-  return markdown;
+  return markdown.replace(/\n\n\n+/g, '\n\n');
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
