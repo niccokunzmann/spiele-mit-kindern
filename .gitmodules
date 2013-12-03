@@ -7,3 +7,6 @@
 [submodule "python/github3.py"]
 	path = python/github3.py
 	url = git@github.com:sigmavirus24/github3.py.git
+[submodule "python/python-github3"]
+	path = python/python-github3
+	url = git@github.com:copitux/python-github3.git
