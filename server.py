@@ -36,15 +36,37 @@ class MyRequestHandler(http_server.SimpleHTTPRequestHandler):
         return self.do_GET()
 
 
+def test(HandlerClass = BaseHTTPRequestHandler,
+         ServerClass = HTTPServer, protocol="HTTP/1.0", port=8000):
+    """Test the HTTP request handler class.
+
+    This runs an HTTP server on port 8000 (or the first command line
+    argument).
+
+    """
+    server_address = ('', port)
+
+    HandlerClass.protocol_version = protocol
+    httpd = ServerClass(server_address, HandlerClass)
+
+    sa = httpd.socket.getsockname()
+    print("Serving HTTP on", sa[0], "port", sa[1], "...")
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("\nKeyboard interrupt received, exiting.")
+        httpd.server_close()
+        sys.exit(0)
+
 def start_locally():
     print('Url: http://localhost:8000/')
     print('andere IPs: ')
     print(socket.gethostbyname_ex(socket.gethostname()))
 
-    http_server.test(MyRequestHandler)
+    test(MyRequestHandler)
 
 def start_internet():
-    http_server.test(MyRequestHandler, port = 80)
+    test(MyRequestHandler, port = 80)
 
 if __name__ == '__main__':
     start_locally()
