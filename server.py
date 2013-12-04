@@ -35,8 +35,17 @@ class MyRequestHandler(http_server.SimpleHTTPRequestHandler):
             sourceCode = params.get('sourceCode', [''])[0]
         return self.do_GET()
 
-print('Url: http://localhost:8000/')
-print('andere IPs: ')
-print(socket.gethostbyname_ex(socket.gethostname()))
 
-http_server.test(MyRequestHandler)
+def start_locally():
+    print('Url: http://localhost:8000/')
+    print('andere IPs: ')
+    print(socket.gethostbyname_ex(socket.gethostname()))
+
+    http_server.test(MyRequestHandler)
+
+def start_internet():
+    http_server.test(MyRequestHandler, port = 80)
+
+if __name__ == '__main__':
+    start_locally()
+
