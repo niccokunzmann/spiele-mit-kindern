@@ -3,10 +3,60 @@ loadjscssfile("stylesheets/feedback.css", "css");
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
+// post to the server
+//
+
+function getTheSourceCode() {
+  var sourceCode = '<html><head><script type="text/javascript" src="javascripts/markdownwebsite.js"></script></head><body>\r\n\r\n';
+  $('.markdown-body').each(function (index) { 
+    sourceCode += getMarkdownFromNodes(this.childNodes);
+  })
+  sourceCode += '</body></html>';
+  return sourceCode;
+};
+
+function postLocation() {
+  // this needs to be modified once there is a online version
+  return document.location;
+}
+
+function saveTheSourceCodeToServer(comment) {
+  var path = postLocation();
+  var params = { 'sourceCode' : getTheSourceCode() , 'comment' : comment};
+  post_to_url(path, params, 'post');
+}
+
+function post_to_url(path, params, method) {
+    // from http://stackoverflow.com/questions/133925/javascript-post-request-like-a-form-submit
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 // edit the markdown
 //
-// 
-//
+
 
 var selectionEditNodeId = 'i_am_the_selection_edit_node';
 var editAreaId = 0;
