@@ -18,6 +18,7 @@ function getTheSourceCode() {
 function postLocation() {
   // this needs to be modified once there is a online version
   return document.location;
+  //return 'http://niccokunzmann.pythonanywhere.com' + window.location.pathname;
 }
 
 function saveTheSourceCodeToServer(comment) {
@@ -120,7 +121,8 @@ function setupSelectionEditNode() {
   newdiv.setAttribute('id', selectionEditNodeId);
   newdiv.setAttribute('class', 'hiddenEditContainer');
   // https://github.com/niccokunzmann/tannenhof/blob/master/website/drawLine.js
-  newdiv.innerHTML = '<a href="javascript:editSelection()" id="editSelectionLink">editieren</a>';
+  //newdiv.innerHTML = '<a href="javascript:editSelection()" id="editSelectionLink">editieren</a>';
+  newdiv.innerHTML = '<a href="javascript:saveTheSourceCodeToServer(\'test\');" id="editSelectionLink">posten</a>';
   document.body.appendChild(newdiv);
 }
 
