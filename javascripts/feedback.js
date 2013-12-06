@@ -30,12 +30,12 @@ function pullRequestLocation() {
   if (document.location.hostname == 'niccokunzmann.github.io') {
     return 'http://niccokunzmann.pythonanywhere.com/publish' + window.location.pathname;
   }
-  return document.origin + '/publish' + window.location.pathname;
+  return window.location.origin + '/publish' + window.location.pathname;
 }
 
 function createPullRequestOnServer(commitText) {
   var path = pullRequestLocation();
-  var params = { 'sourceCode' : getTheSourceCode() , 'comment' : comment};
+  var params = { 'sourceCode' : getTheSourceCode() , 'comment' : commitText};
   post_to_url(path, params, 'post');
 }
 
@@ -138,7 +138,7 @@ function setupEditArea(nodes) {
     var saveChangesDiv = document.createElement('div');
     saveChangesDiv.setAttribute('class', 'saveChanges');
     saveChangesDiv.innerHTML = '<a href="javascript:viewEdit()" class="editMenu">ansehen</a> ' + 
-                               '<a href="javascript:saveEdit()" class="editMenu">speichern</a>' +
+                               '<a href="javascript:saveEdit()" class="editMenu">speichern</a> ' +
                                '<a href="javascript:createPullRequest()" class="editMenu">ver&ouml;ffentlichen</a>';;
     newDiv.appendChild(saveChangesDiv);
     var textarea = document.createElement('textarea');
