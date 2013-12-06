@@ -1,5 +1,7 @@
 
 loadjscssfile("stylesheets/feedback.css", "css");
+loadjscssfile("javascripts/jquery.blockUI.js", "js");
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -11,20 +13,34 @@ function getTheSourceCode() {
   $('.markdown-body').each(function (index) { 
     sourceCode += getMarkdownFromNodes(this.childNodes);
   })
-  sourceCode += '</body></html>';
+  sourceCode += '\r\n\r\n</body></html>';
   return sourceCode;
 };
 
 function saveLocation() {
   // this needs to be modified once there is a online version
-  if document.location.hostname == 'niccokunzmann.github.io' {
+  if (document.location.hostname == 'niccokunzmann.github.io') {
     return 'http://niccokunzmann.pythonanywhere.com/repo' + window.location.pathname;
   }
   return document.location;
 }
 
+function pullRequestLocation() {
+  // this needs to be modified once there is a online version
+  if (document.location.hostname == 'niccokunzmann.github.io') {
+    return 'http://niccokunzmann.pythonanywhere.com/publish' + window.location.pathname;
+  }
+  return document.origin + '/publish' + window.location.pathname;
+}
+
+function createPullRequestOnServer(commitText) {
+  var path = pullRequestLocation();
+  var params = { 'sourceCode' : getTheSourceCode() , 'comment' : comment};
+  post_to_url(path, params, 'post');
+}
+
 function saveTheSourceCodeToServer(comment) {
-  var path = postLocation();
+  var path = saveLocation();
   var params = { 'sourceCode' : getTheSourceCode() , 'comment' : comment};
   post_to_url(path, params, 'post');
 }
@@ -49,7 +65,6 @@ function post_to_url(path, params, method) {
             form.appendChild(hiddenField);
          }
     }
-
     document.body.appendChild(form);
     form.submit();
 }
@@ -71,9 +86,32 @@ function editSelection() {
   hideSelectionEditNode();
 }
 
+function saveEditFromDialog() {
+  commitText = $('#commitTextArea').val();
+  $.unblockUI();
+  saveTheSourceCodeToServer(commitText);
+}
+
 function saveEdit() {
   viewEdit();
-  saveTheSourceCodeToServer("save");
+  $.blockUI({ message: '<div class="saveEditDialog"><p>Was ist besser?</p><p><textarea id="commitTextArea"></textarea></p>' +
+                       '<a href="javascript:saveEditFromDialog()">fertig! danke!</a><br />' + 
+                       '<a href="$.unblockUI()">nicht speichern, ansehen, zur&uuml;ck.</a>' +
+                       '<p>Die gespeicherte Version kann wieder angesehen werden nachdem diese Seite geschlossen wurde.</p></div>'});
+}
+
+function createPullRequest() {
+  viewEdit();
+  $.blockUI({ message: '<div class="createPullRequestDialog"><p>Was ist besser?</p><p><textarea id="pullRequestTextArea"></textarea></p>' +
+                       '<a href="javascript:createPullRequestFromDialog()">fertig! danke!</a><br />' + 
+                       '<a href="$.unblockUI()">nicht ver&ouml;ffentlichen, ansehen, zur&uuml;ck.</a>' +
+                       '<p>Wenn du es ver&ouml;ffentlicht hast, kann ich die &Auml;nderungen in die Webseite &uuml;bernehmen. Ich danke!</p></div>'});
+}
+
+function createPullRequestFromDialog() {
+  commitText = $('#pullRequestTextArea').val();
+  $.unblockUI();
+  createPullRequestOnServer(commitText);
 }
   
 function viewEdit() {
@@ -99,8 +137,9 @@ function setupEditArea(nodes) {
     newDiv.appendChild(liveDiv);
     var saveChangesDiv = document.createElement('div');
     saveChangesDiv.setAttribute('class', 'saveChanges');
-    saveChangesDiv.innerHTML = '<a href="javascript:viewEdit()" class="editMenu">ansehen</a> '+ 
-                               '<a href="javascript:saveEdit()" class="editMenu">speichern</a>';
+    saveChangesDiv.innerHTML = '<a href="javascript:viewEdit()" class="editMenu">ansehen</a> ' + 
+                               '<a href="javascript:saveEdit()" class="editMenu">speichern</a>' +
+                               '<a href="javascript:createPullRequest()" class="editMenu">ver&ouml;ffentlichen</a>';;
     newDiv.appendChild(saveChangesDiv);
     var textarea = document.createElement('textarea');
     textarea.setAttribute('class', 'liveEditTextArea');
