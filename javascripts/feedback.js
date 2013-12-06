@@ -97,7 +97,7 @@ function saveEdit() {
   viewEdit();
   $.blockUI({ message: '<div class="saveEditDialog"><p>Was ist besser?</p><p><textarea id="commitTextArea"></textarea></p>' +
                        '<a href="javascript:saveEditFromDialog()">fertig! danke!</a><br />' + 
-                       '<a href="$.unblockUI()">nicht speichern, ansehen, zur&uuml;ck.</a>' +
+                       '<a href="javascript:$.unblockUI()">nicht speichern, ansehen, zur&uuml;ck.</a>' +
                        '<p>Die gespeicherte Version kann wieder angesehen werden nachdem diese Seite geschlossen wurde.</p></div>'});
 }
 
@@ -105,7 +105,7 @@ function createPullRequest() {
   viewEdit();
   $.blockUI({ message: '<div class="createPullRequestDialog"><p>Was ist besser?</p><p><textarea id="pullRequestTextArea"></textarea></p>' +
                        '<a href="javascript:createPullRequestFromDialog()">fertig! danke!</a><br />' + 
-                       '<a href="$.unblockUI()">nicht ver&ouml;ffentlichen, ansehen, zur&uuml;ck.</a>' +
+                       '<a href="javascript:$.unblockUI()">nicht ver&ouml;ffentlichen, ansehen, zur&uuml;ck.</a>' +
                        '<p>Wenn du es ver&ouml;ffentlicht hast, kann ich die &Auml;nderungen in die Webseite &uuml;bernehmen. Ich danke!</p></div>'});
 }
 
