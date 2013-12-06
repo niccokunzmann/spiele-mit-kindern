@@ -15,10 +15,12 @@ function getTheSourceCode() {
   return sourceCode;
 };
 
-function postLocation() {
+function saveLocation() {
   // this needs to be modified once there is a online version
+  if document.location.hostname == 'niccokunzmann.github.io' {
+    return 'http://niccokunzmann.pythonanywhere.com/repo' + window.location.pathname;
+  }
   return document.location;
-  //return 'http://niccokunzmann.pythonanywhere.com' + window.location.pathname;
 }
 
 function saveTheSourceCodeToServer(comment) {
@@ -64,12 +66,17 @@ var editAreaId = 0;
 
 function editSelection() {
   var nodes = getSelectedNodes();
-  saveEdit();
+  viewEdit();
   setupEditArea(nodes);
   hideSelectionEditNode();
 }
 
 function saveEdit() {
+  viewEdit();
+  saveTheSourceCodeToServer("save");
+}
+  
+function viewEdit() {
   $('.liveEditHTMLContent').each(function (index) {
     while (this.childNodes.length > 0) {
       this.parentNode.parentNode.insertBefore(this.removeChild(this.childNodes[0]), this.parentNode);
@@ -92,7 +99,8 @@ function setupEditArea(nodes) {
     newDiv.appendChild(liveDiv);
     var saveChangesDiv = document.createElement('div');
     saveChangesDiv.setAttribute('class', 'saveChanges');
-    saveChangesDiv.innerHTML = '<a href="javascript:saveEdit()">speichern</a>';
+    saveChangesDiv.innerHTML = '<a href="javascript:viewEdit()" class="editMenu">ansehen</a> '+ 
+                               '<a href="javascript:saveEdit()" class="editMenu">speichern</a>';
     newDiv.appendChild(saveChangesDiv);
     var textarea = document.createElement('textarea');
     textarea.setAttribute('class', 'liveEditTextArea');
@@ -121,8 +129,7 @@ function setupSelectionEditNode() {
   newdiv.setAttribute('id', selectionEditNodeId);
   newdiv.setAttribute('class', 'hiddenEditContainer');
   // https://github.com/niccokunzmann/tannenhof/blob/master/website/drawLine.js
-  //newdiv.innerHTML = '<a href="javascript:editSelection()" id="editSelectionLink">editieren</a>';
-  newdiv.innerHTML = '<a href="javascript:saveTheSourceCodeToServer(\'test\');" id="editSelectionLink">posten</a>';
+  newdiv.innerHTML = '<a href="javascript:editSelection()" id="editSelectionLink">editieren</a>';
   document.body.appendChild(newdiv);
 }
 
@@ -158,7 +165,10 @@ function setSelectionEditNodePositionEvent(e) {
   setSelectionEditNodePosition(x, y);
 };
 
-document.body.onmouseup = setSelectionEditNodePositionEvent;
+if (document.location.protocol != 'file:') {
+  // you can not edit a local file, I guess
+  document.body.onmouseup = setSelectionEditNodePositionEvent;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
