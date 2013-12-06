@@ -1,3 +1,6 @@
 /beispiele
 /javascripts/rangy-1.2.3/uncompressed
 /javascripts/rangy-1.2.3
+server.pyc
+python/githubInterface.pyc
+*.pyc
