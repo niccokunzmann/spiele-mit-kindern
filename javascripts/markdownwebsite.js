@@ -35,7 +35,7 @@ function readyToChangeTheDocument() {
   } else {
     $(document).ready(function() {
       
-      $('body').html(headerString + markdownToHtml($('body').html().replace('&gt;', '>', 'g')) + footerString);
+      $('body').html(headerString + markdownToHtml($('body').html().replace(/\&gt\;/g, '>')) + footerString);
       changeSourcecode();
     });
   }

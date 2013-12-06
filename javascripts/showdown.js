@@ -1140,12 +1140,12 @@ var _DoItalicsAndBold = function(text) {
 	text = text.replace(/(\*\*|__)(?=\S)([^\r]*?\S[*_]*)\1/g,
 		function (wholeMatch, m1, m2, m3) {
       // todo: escape must be changed so it does not give matches in the text
-      return '<strong originalmarkdown="' + escape(wholeMatch).replace('*', '%2a', 'g').replace('_', '%5f', 'g') + '">' + m2 + "</strong>";
+      return '<strong originalmarkdown="' + escape(wholeMatch).replace(/\*/g, '%2a').replace(/_/g, '%5f') + '">' + m2 + "</strong>";
     });
 
 	text = text.replace(/(\*|_)(?=\S)([^\r]*?\S)\1/g,
     function (wholeMatch, m1, m2, m3) {
-      return '<em originalmarkdown="' + escape(wholeMatch).replace('*', '%2a', 'g').replace('_', '%5f', 'g') + '">' + m2 + "</em>";
+      return '<em originalmarkdown="' + escape(wholeMatch).replace(/\*/g, '%2a').replace(/_/g, '%5f') + '">' + m2 + "</em>";
     }
 		);
 
@@ -1365,7 +1365,7 @@ var _EncodeEmailAddress = function(addr, wholeMatch) {
 	});
 
   // todo: save the email address from bad crawlers!
-	addr = "<a href=\"" + addr + "\" originalmarkdown=\"" + escape(wholeMatch).replace('@', '%40', 'g') + "\">" + addr + "</a>";
+	addr = "<a href=\"" + addr + "\" originalmarkdown=\"" + escape(wholeMatch).replace(/\@/g, '%40') + "\">" + addr + "</a>";
 	addr = addr.replace(/">.+:/g,"\">"); // strip the mailto: from the visible part
 
 	return addr;
