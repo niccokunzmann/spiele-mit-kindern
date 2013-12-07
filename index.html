@@ -5,7 +5,7 @@ Etoys herunterladen
 
 Wir benutzen die portable Version von Etoys, die auf Windows, Linux und Mac functioniert. Sie kann [hier](http://www.squeakland.org/content/installers/Etoys-To-Go-5.0.zip) herunter geladen werden.
 
-In der heruntergeladenen Datei befindet sich ein Ordner **Etoys-To-Go 5.0.app**. Dieser Ordner muss dorthin kopiert werden, wo die zukünftigen Spiele gespeichert werden sollen. Z.B. auf einen USB-Stick oder in den Dokumente-Ordner. test
+In der heruntergeladenen Datei befindet sich ein Ordner **Etoys-To-Go 5.0.app**. Dieser Ordner muss dorthin kopiert werden, wo die zukünftigen Spiele gespeichert werden sollen. Z.B. auf einen USB-Stick oder in den Dokumente-Ordner.
 
 (Es gibt auch Versionen zum Installieren: [squeakland.org](http://www.squeakland.org/download/))
 
@@ -69,8 +69,8 @@ Also machen wir einen Ball. Form und Farbe sind egal:
 
 ![Ball Rechtsklick](images/tutorial/04-BallRechtsklick.png)
 
-Die Halos [Häilos gesprochen], die um den Ball erscheinen, haben auch eine Hilfe und sind nützlich[Das heißt: wenn du viel mit Etoys erreichst, wirst du irgendwann mal alle benutzt haben. Also klicke alle an und sieh was passiert. Unten links ist der Mülleimer.]. 
-Der Pfeil ist die Richtung und der blaue Kreis ist der Drehmittelpunkt. 
+Die Halos [Häilos gesprochen], die um den Ball erscheinen, haben auch eine Hilfe und sind nützlich[Das heißt: wenn du viel mit Etoys erreichst, wirst du irgendwann mal alle benutzt haben. Also klicke alle an und sieh was passiert. Unten links ist der Mülleimer.].  
+Der Pfeil ist die Richtung und der blaue Kreis ist der Drehmittelpunkt.  
 Momentan heißt der Ball aber nicht **Ball** sondern **Zeichnung**. Deswegen wird er umbenannt. Dann wird er später leichter gefunden.
 
 ![Ball Umbenennen](images/tutorial/05-BallUmbenannt.png)
@@ -131,7 +131,7 @@ Jetzt ist der Projektstand im Ordner **Etoys** gespeichert. Dieser befindet sich
 Einen Schieber Erstellen
 ========================
 
-Wenn wir erstmal einen Schieber haben, können wir ihn duplizieren. So entsteht der [zweite Schieber](#zweitenschiebererstellen) schneller, als wenn beide zugleich gebaut werden. 
+Wenn wir erstmal einen Schieber haben, können wir ihn duplizieren. So entsteht der [zweite Schieber](#zweitenschiebererstellen) schneller, als wenn beide zugleich gebaut werden.  
 Nachdem wir einen Schieber gemalt haben, [wie wir einen Ball gemalt haben](#ballerstellen), können wir den in der Größe verändern:
 
 1. ![Schieber Größe verändern](images/tutorial/14-SchieberMalen.png) 
@@ -140,12 +140,12 @@ Nachdem wir einen Schieber gemalt haben, [wie wir einen Ball gemalt haben](#ball
 Den Schieber bewegen
 ====================
 
-Das funktioniert wie [den Ball zu bewegen](#denballbewegen).  
+Das funktioniert wie [den Ball zu bewegen](#denballbewegen).   
 So soll es dann aussehen: 
 
-<solution> 
-![Der Schieber bewegt sich nach oben](images/tutorial/152-SchieberBewegen.png) 
-Wenn Du abprallen mit drin hast, lass es drin. Wenn der Schieber sich irgendwann anders bewegt, könnte es daran liegen. 
+<solution>  
+![Der Schieber bewegt sich nach oben](images/tutorial/152-SchieberBewegen.png)  
+Wenn Du abprallen mit drin hast, lass es drin. Wenn der Schieber sich irgendwann anders bewegt, könnte es daran liegen.  
 </solution>
 
 Was auch geht, aber bei größeren Projekten stört, ist, dass der Ball den Schieber bewegt:
@@ -178,7 +178,7 @@ So sieht es jetzt bei mir aus. **Ball bewegen** und **SchieberLinks bewegen** li
 Auf Tasten Testen
 =================
 
-Der Schieber soll nur bewegt werden, wenn die Taste gedrückt wird. Das macht man mit einem Test.  
+Der Schieber soll nur bewegt werden, wenn die Taste gedrückt wird. Das macht man mit einem Test.   
 Man braucht dazu 
 
 ![einen Test](images/tutorial/test.png) in ![der orangen Box](images/tutorial/OrangeBox.png)
@@ -191,14 +191,14 @@ Man braucht dazu
 
 Zusammen stecken und so sieht es dann aus:
 
-<solution> 
-![einen Test](images/tutorial/19-SchieberBewegen.png) 
+<solution>  
+![einen Test](images/tutorial/19-SchieberBewegen.png)  
 </solution>
 
 Schieber Steuern
 ================
 
-Es gibt einen Halo namens "duplizieren" ![](images/tutorial/duplizieren.png). Damit können wir kopieren, was wir schonmal gemacht haben.  
+Es gibt einen Halo namens "duplizieren" ![](images/tutorial/duplizieren.png). Damit können wir kopieren, was wir schonmal gemacht haben.   
 Damit der Schieber sich nach unten bewegt, muss man den KeyPress duplizieren und den Test auf den Tastendruck. Der Test muss dazu aus dem Script genommen werden.
 
 ![](images/tutorial/20-Duplizieren.png)
@@ -217,16 +217,16 @@ Mit diesen Dingen kann der Schieber hoch und runter gehen:
 
 ![LinkerSchieberRunter Kachel](images/tutorial/23-LinkerSchieberRunter.png) diese Kachel mit ![](images/tutorial/kachel.png).
 
-<hinweis> 
-Man kann die Kachel **LinkerSchieberRunter** auf die **KachelLinkerSchieberHochs** ziehen und fallen lassen, damit wird ersetzt:  
-![](images/tutorial/232-HinweisKeyPressErsetzen.png)  
-Negative Zahlen eignen sich um Rückwärts zu gehen. 
+<hinweis>  
+Man kann die Kachel **LinkerSchieberRunter** auf die **KachelLinkerSchieberHochs** ziehen und fallen lassen, damit wird ersetzt:   
+![](images/tutorial/232-HinweisKeyPressErsetzen.png)   
+Negative Zahlen eignen sich um Rückwärts zu gehen.  
 </hinweis>
 
 Andere Lösungen sind bestimmt auch richtig, solange sich der Schieber in beide Richtungen bewegt. So mache ich das:
 
-<solution> 
-![LinkerSchieberRunter Kachel](images/tutorial/24-Loesung.png) 
+<solution>  
+![LinkerSchieberRunter Kachel](images/tutorial/24-Loesung.png)  
 </solution>
 
 [Speichern?](#dasprojektspeichern)
@@ -238,15 +238,15 @@ Der zweite Schieber kann erstellt werden, indem man den einen Schieber duplizier
 
 Danach muss man noch mehr duplizieren und ersetzen und dann funktioniert er mit anderen Tasten. Alles haben wir vorher schon gemacht.
 
-<hinweis> 
-Die beiden beiden Key-Press-Objekte müssen auch dupliziert werden. 
-Benutze die Kacheln zum Ersetzen ![](images/tutorial/kachel.png). 
-Öffne die Kategorie Skripte wenn du den anderen Schieber inspizierst![](images/tutorial/auge.png). Ziehe das Skript **bewegen** raus. 
-Schaue, wie wir es [vorher](#schiebersteuern) gemacht haben. 
+<hinweis>  
+Die beiden beiden Key-Press-Objekte müssen auch dupliziert werden.  
+Benutze die Kacheln zum Ersetzen ![](images/tutorial/kachel.png).  
+Öffne die Kategorie Skripte wenn du den anderen Schieber inspizierst![](images/tutorial/auge.png). Ziehe das Skript **bewegen** raus.  
+Schaue, wie wir es [vorher](#schiebersteuern) gemacht haben.  
 </hinweis>
 
-<solution> 
-![](images/tutorial/25-ZweiterSchieber.png) 
+<solution>  
+![](images/tutorial/25-ZweiterSchieber.png)  
 </solution>
 
 Ball Am Schieber Abprallen 
@@ -268,18 +268,18 @@ In den Kategorien **Tests**, **Beobachtung** und **Scripte** kann man diese Baut
 
 Damit stecke ich das Abprallen am **SchieberLinks** zusammen.
 
-<hinweis> 
-Sag mir, was du als Hinweis erwartet hättest. Dann kann ich es reintun und das nächste Mal ist diese Stelle hilfreich. 
+<hinweis>  
+Sag mir, was du als Hinweis erwartet hättest. Dann kann ich es reintun und das nächste Mal ist diese Stelle hilfreich.  
 </hinweis>
 
-<solution> 
-![](images/tutorial/28-Loesung.png) 
+<solution>  
+![](images/tutorial/28-Loesung.png)  
 </solution>
 
 Das Gleiche kann man noch für den anderen Schieber machen. Diesmal kann man duplizieren ![](images/tutorial/duplizieren.png) und die Kacheln erstellen mit ![](images/tutorial/kachel.png).
 
-<solution> 
-![](images/tutorial/29-BeideSchieber.png) 
+<solution>  
+![](images/tutorial/29-BeideSchieber.png)  
 </solution>
 
 Manchmal prallt der Ball unschön oben oder unten ab und geht ewig hin und her. Das liegt daran, wo die Mitte des Schiebers liegt, da die Richtung von der Mitte aus berechnet wird. Die Mitte kann man aber verschieben:
@@ -309,18 +309,18 @@ Um den Zahlenwert um 1 zu erhöhen, kann man folgendes machen:
 
 Mit diesen Sachen kann man schon eine Punkteanzeige bauen:
 
-![](images/tutorial/35-ZahlenwertErhoehen.png) ![](images/tutorial/36-LinkerRand.png) ![](images/tutorial/36-RechterRand.png) 
+![](images/tutorial/35-ZahlenwertErhoehen.png) ![](images/tutorial/36-LinkerRand.png) ![](images/tutorial/36-RechterRand.png)  
 ![](images/tutorial/29-BeideSchieber.png)
 
-<hinweis> 
-Benutze Tests aus ![der orangen Box](images/tutorial/OrangeBox.png).  
-Durch ![](images/tutorial/kachel.png) (mit Rechtsklick auf die Objekte) erhältst du die erforderlichen Kacheln.  
-Nutze die Bausteine aus dem Ball-Skript oder den Kategorien **Tests**, **Beobachtung** und eventuell **Scripte**. 
+<hinweis>  
+Benutze Tests aus ![der orangen Box](images/tutorial/OrangeBox.png).   
+Durch ![](images/tutorial/kachel.png) (mit Rechtsklick auf die Objekte) erhältst du die erforderlichen Kacheln.   
+Nutze die Bausteine aus dem Ball-Skript oder den Kategorien **Tests**, **Beobachtung** und eventuell **Scripte**.  
 </hinweis>
 
-<solution> 
-So habe ich das gemacht: 
-![](images/tutorial/37-Loesung.png) 
+<solution>  
+So habe ich das gemacht:  
+![](images/tutorial/37-Loesung.png)  
 </solution>
 
 Es entsteht ein neues Problem: der Ball hat bei mir gerade 32 Punte vergeben. es sollte aber nur einer sein. Man kann das Problem lösen, 
@@ -333,19 +333,19 @@ Ich mag Nummer 2.
 Ball Zurück Setzen
 ==================
 
-Um den Ball zurück in die Mitte zu setzen, braucht man die Position der Mitte. 
+Um den Ball zurück in die Mitte zu setzen, braucht man die Position der Mitte.  
 In der Kategorie **Mehr Geometrie** befindet sich die Position des Balles und wenn wir ihn in die Mitte tun, auch die Position der Mitte.
 
 ![](images/tutorial/38-PositionBestimmen.png)
 
 Indem ich den ![Zuweisungspfeil](images/tutorial/Zuweisungspfeil.png) anfasse, ziehe ich die Zuweisung hinaus und füge sie in das Ball-Script ein.
 
-<hinweis> 
-2 Mal. 
+<hinweis>  
+2 Mal.  
 </hinweis>
 
-<solution> 
-![](images/tutorial/39-BallGehtInDieMitte.png) 
+<solution>  
+![](images/tutorial/39-BallGehtInDieMitte.png)  
 </solution>
 
 Zwischenstand
@@ -380,7 +380,7 @@ Du hast jetzt die Grundlagen zur Programmierung mit EToys. Wenn du [speicherst](
 
 In ![der Projektgalerie](images/tutorial/Projektgalerie.png) mag ich ![die Etoys Challenge](images/tutorial/43-EtoysChallenge.png) aber es gibt auch ![Anleitungen und Beispiele](images/tutorial/AnleitungenUndBeispiele.png) 
 
-Hoffentlich habe ich genug gezeigt, wie man ein eigenes Spiel macht. 
+Hoffentlich habe ich genug gezeigt, wie man ein eigenes Spiel macht.  
 Was noch interessant sein könnte:
 
  - Animationen (finden sich in der Projektgalerie)
