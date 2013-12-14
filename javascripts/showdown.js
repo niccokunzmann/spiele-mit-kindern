@@ -508,7 +508,7 @@ var _RunSpanGamut = function(text) {
 	text = _DoItalicsAndBold(text);
 
 	// Do hard breaks:
-	text = text.replace(/\n/g," <br />\n");
+	text = text.replace(/\n/g,"<br />\n");
 
 	return text;
 }
@@ -761,7 +761,7 @@ var writeImageTag = function(wholeMatch,m1,m2,m3,m4,m5,m6,m7) {
 		result +=  " title=\"" + title + "\"";
 	//}
 
-	result += "  originalmarkdown=\"" + escape(wholeMatch) + "\"/>";
+	result += " originalmarkdown=\"" + escape(wholeMatch) + "\"/>";
 
 	return result;
 }
