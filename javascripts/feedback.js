@@ -284,7 +284,7 @@ function getSelectedMarkdownNodes() {
     if (selectionAncestor == null) { return []; }
     return getNodesBetween(selectionAncestor, location1.node, location2.node);
   } else if ((location1.before && location2.after) || (location2.before && location1.after)) {
-    return markdownbody().childNodes;
+    return toArray(markdownbody().childNodes);
   } else if (location1.outside && location2.outside) {
     return [];
   } else if (location1.before) {
@@ -298,8 +298,17 @@ function getSelectedMarkdownNodes() {
   }
 }
 
-function getSelectedMarkdownNodesBefore(node) {
+function toArray(obj) {
+  // from http://stackoverflow.com/questions/2735067/how-to-convert-a-dom-node-list-to-an-array-in-javascript
+  var array = [];
+  // iterate backwards ensuring that length is an UInt32
+  for (var i = obj.length >>> 0; i--;) { 
+    array[i] = obj[i];
+  }
+  return array;
+}
 
+function getSelectedMarkdownNodesBefore(node) {
   var nodes = [];
   var parent = markdownbody().firstChild;
   while (parent) {
@@ -313,6 +322,15 @@ function getSelectedMarkdownNodesBefore(node) {
 }
 
 function getSelectedMarkdownNodesAfter(node) {
+  var nodes = [];
+  var parent = markdownbody().lastChild;
+  while (parent) {
+    nodes.push(parent);
+    if (isDescendant(parent, node)) { 
+      return nodes;
+    };
+    parent = parent.previousSibling;
+  }
   return [];
 }
 
