@@ -1,8 +1,19 @@
+/*
+  
+  edit the website and post new edits to the server
+  
+  on mouseup the selectionEditNode with the text 'editieren' appears
+  when clicked it creates an editArea
+  
+*/
 
 loadjscssfile("stylesheets/feedback.css", "css");
 loadjscssfile("javascripts/jquery.blockUI.js", "js");
-loadjscssfile("javascripts/jquery.blockUI.js", "js");
-loadjscssfile("http://niccokunzmann.pythonanywhere.com/I_am_here.js", "js");
+//loadjscssfile("http://niccokunzmann.pythonanywhere.com/I_am_here.js", "js");
+
+function markdownbody() {
+  return $('.markdown-body')[0];
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -11,9 +22,7 @@ loadjscssfile("http://niccokunzmann.pythonanywhere.com/I_am_here.js", "js");
 
 function getTheSourceCode() {
   var sourceCode = '<html><head><script type="text/javascript" src="javascripts/markdownwebsite.js"></script></head><body>\r\n\r\n';
-  $('.markdown-body').each(function (index) { 
-    sourceCode += getMarkdownFromNodes(this.childNodes);
-  })
+  sourceCode += getMarkdownFromNodes(markdownbody().childNodes);
   sourceCode += '\r\n\r\n</body></html>';
   return sourceCode;
 };
@@ -81,7 +90,7 @@ var selectionEditNodeId = 'i_am_the_selection_edit_node';
 var editAreaId = 0;
 
 function editSelection() {
-  var nodes = getSelectedNodes();
+  var nodes = getSelectedMarkdownNodes();
   viewEdit();
   setupEditArea(nodes);
   hideSelectionEditNode();
@@ -186,8 +195,7 @@ function hideSelectionEditNode() {
 
 function setSelectionEditNodePosition(x, y) {
   var node = getSelectionEditNode();
-  var selection = window.getSelection();
-  var IwantToEditTheSelectedText = !(selection == undefined || selection.isCollabsed || selection.toString() == '');
+  var IwantToEditTheSelectedText = getSelectedMarkdownNodes().length != 0;
   if (IwantToEditTheSelectedText) { 
     node.attr('class', 'floatingEditContainer');
     node.css('top', (y + 3) + 'px');
@@ -214,7 +222,7 @@ if (document.location.protocol != 'file:') {
 //
 // get the markdown text
 //
-// var markdownText = getMarkdownFromNodes(getSelectedNodes());
+// var markdownText = getMarkdownFromNodes(getSelectedMarkdownNodes());
 //
 
 var includeNodeNamesIntoMarkdown = ['solution', 'hinweis', 'hint'];
@@ -258,25 +266,107 @@ function arrayContainsNodeName(a, string) {
 //
 // get the selected nodes
 //
-// var nodes = getSelectedNodes();
+// var nodes = getSelectedMarkdownNodes();
 //
 
 // posted on github
 // https://github.com/niccokunzmann/spiele-mit-kindern/blob/gh-pages/javascripts/feedback.js
-function getSelectedNodes() {
+function getSelectedMarkdownNodes() {
   // from https://developer.mozilla.org/en-US/docs/Web/API/Selection
   var selection = window.getSelection();
-  if (selection.isCollabsed) {
+  if (selection == undefined || selection.isCollabsed || selection.toString() == '') {
     return [];
   };
-  var node1 = selection.anchorNode;
-  var node2 = selection.focusNode;
-  var selectionAncestor = get_common_ancestor(node1, node2);
-  if (selectionAncestor == null) {
+  var location1 = markdown_node_location(selection.anchorNode);
+  var location2 = markdown_node_location(selection.focusNode);
+  if (location1.inside && location2.inside) {
+    var selectionAncestor = get_common_ancestor(location1.node, location2.node);
+    if (selectionAncestor == null) { return []; }
+    return getNodesBetween(selectionAncestor, location1.node, location2.node);
+  } else if ((location1.before && location2.after) || (location2.before && location1.after)) {
+    return markdownbody().childNodes;
+  } else if (location1.outside && location2.outside) {
     return [];
+  } else if (location1.before) {
+    return getSelectedMarkdownNodesBefore(location2.node);
+  } else if (location2.before) {
+    return getSelectedMarkdownNodesBefore(location1.node);
+  } else if (location1.after) {
+    return getSelectedMarkdownNodesAfter(location2.node);
+  } else if (location2.after) {
+    return getSelectedMarkdownNodesAfter(location1.node);
   }
-  return getNodesBetween(selectionAncestor, node1, node2);
 }
+
+function getSelectedMarkdownNodesBefore(node) {
+
+  var nodes = [];
+  var parent = markdownbody().firstChild;
+  while (parent) {
+    nodes.push(parent);
+    if (isDescendant(parent, node)) { 
+      return nodes;
+    };
+    parent = parent.nextSibling;
+  }
+  return [];
+}
+
+function getSelectedMarkdownNodesAfter(node) {
+  return [];
+}
+
+function markdown_node_location(node) {
+  return new Markdown_node_location(node);
+}
+
+function Markdown_node_location(node) {
+  this.before = node_is_before_markdown_body(node);
+  this.inside = node_is_in_markdown_body(node);
+  this.after = !(this.before || this.inside);
+  this.outside = !this.inside;
+  this.node = node;
+}
+
+var NO_RETURN_VALUE = function(){}; 
+NO_RETURN_VALUE = NO_RETURN_VALUE();
+
+function node_is_before_markdown_body(node_before) {
+  var start = markdownbody();
+  var result = walk_the_DOM_while(document.body, function(node){
+      if (node == start) {
+        return false;
+      };
+      if (node == node_before) {
+        return true;
+      };
+    });
+  if (result == NO_RETURN_VALUE) {
+    return false;
+  };
+  return result;
+}
+
+function node_is_in_markdown_body(node_inside) {
+  return isDescendant(markdownbody(), node_inside);
+}
+
+function walk_the_DOM_while(node, func) {
+    // walks the dom while the function returns nothing
+    // from http://stackoverflow.com/questions/6248833/using-jquery-to-walk-dom-return-html-attributes-from-node
+    var result = func(node);
+    if (result != NO_RETURN_VALUE) {
+        return result;
+    };
+    node = node.firstChild;
+    while (node) {
+        result = walk_the_DOM_while(node, func);
+        if (result != NO_RETURN_VALUE) {
+            return result;
+        };
+        node = node.nextSibling;
+    }
+};
 
 function get_common_ancestor(a, b)
 {
