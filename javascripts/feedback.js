@@ -5,11 +5,13 @@
   on mouseup the selectionEditNode with the text 'editieren' appears
   when clicked it creates an editArea
   
+  replace repository_root_name_when_editing_files() when the repository is not 'spiele-mit-kindern'
+  
 */
 
 loadjscssfile("stylesheets/feedback.css", "css");
 loadjscssfile("javascripts/jquery.blockUI.js", "js");
-//loadjscssfile("http://niccokunzmann.pythonanywhere.com/I_am_here.js", "js");
+
 
 function markdownbody() {
   return $('.markdown-body')[0];
@@ -27,18 +29,37 @@ function getTheSourceCode() {
   return sourceCode;
 };
 
+function post_to_niccokunzmann_pythonanywhere() {
+  return document.location.protocol == 'file:' || document.location.hostname == 'niccokunzmann.github.io'
+}
+
+function repository_root_name_when_editing_files() {
+  return 'spiele-mit-kindern';
+}
+
+function niccokunzmann_pythonanywhere_pathname() {
+  // from http://www.quirksmode.org/js/strings.html#substring
+  // '123456789'.substring('123456789'.lastIndexOf('56'), '123456789'.length) == '56789'
+  if (document.location.protocol == 'file:') {
+    var pathname = window.location.pathname;
+    var repository_root = repository_root_name_when_editing_files();
+    return '/' + pathname.substring(pathname.lastIndexOf(repository_root), pathname.length);
+  }
+  return window.location.pathname;
+}
+
 function saveLocation() {
   // this needs to be modified once there is a online version
-  if (document.location.hostname == 'niccokunzmann.github.io') {
-    return 'http://niccokunzmann.pythonanywhere.com/repo' + window.location.pathname;
+  if (post_to_niccokunzmann_pythonanywhere()) {
+    return 'http://niccokunzmann.pythonanywhere.com/repo' + niccokunzmann_pythonanywhere_pathname();
   }
   return document.location;
 }
 
 function pullRequestLocation() {
   // this needs to be modified once there is a online version
-  if (document.location.hostname == 'niccokunzmann.github.io') {
-    return 'http://niccokunzmann.pythonanywhere.com/publish' + window.location.pathname;
+  if (post_to_niccokunzmann_pythonanywhere()) {
+    return 'http://niccokunzmann.pythonanywhere.com/publish' + niccokunzmann_pythonanywhere_pathname();
   }
   return window.location.origin + '/publish' + window.location.pathname;
 }
@@ -207,15 +228,26 @@ function setSelectionEditNodePosition(x, y) {
 }
 
 function setSelectionEditNodePositionEvent(e) {
-  // http://dev-notes.com/code.php?q=33
-	var x = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
-	var y = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
-  setSelectionEditNodePosition(x, y);
+  if (there_is_a_storage_location_for_edited_text()) {
+    // http://dev-notes.com/code.php?q=33
+    var x = (window.Event) ? e.pageX : event.clientX + (document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft);
+    var y = (window.Event) ? e.pageY : event.clientY + (document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop);
+    setSelectionEditNodePosition(x, y);
+  }
 };
 
-if (document.location.protocol != 'file:') {
-  // you can not edit a local file, I guess
-  document.body.onmouseup = setSelectionEditNodePositionEvent;
+document.body.onmouseup = setSelectionEditNodePositionEvent;
+
+if (document.location.protocol == 'file:') {
+  var niccokunzmann_pythonanywhere = false;
+  loadjscssfile("http://niccokunzmann.pythonanywhere.com/I_am_here.js", "js");
+  function there_is_a_storage_location_for_edited_text() {
+    return niccokunzmann_pythonanywhere;
+  }
+} else {
+  function there_is_a_storage_location_for_edited_text() {
+    return true;
+  }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
