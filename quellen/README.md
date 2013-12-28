@@ -7,3 +7,5 @@
 [Lehrmaterialien Etoys von der Columbus School](http://www.columbusschoolforgirls.net/etoys/)
 
 Verhaltensregeln beim Workshop: [OpenTechSchool coaching Guide](http://opentechschool.github.io/slides/presentations/coaching/)
+
+[On the schism between programmer and user (beginner) culture](http://pgbovine.net/two-cultures-of-computing.htm)
