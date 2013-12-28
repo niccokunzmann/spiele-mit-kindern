@@ -1206,7 +1206,6 @@ var _DoBlockQuotes = function(text) {
 					pre = pre.replace(/~0/g,"");
 					return pre;
 				});
-      alert("!" + bq + "!");
 			return hashBlock('<blockquote' + markdownTextFrom("> x", "x") + '>' + bq + "</blockquote>");
 		});
 	return text;
