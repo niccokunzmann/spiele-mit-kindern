@@ -23,7 +23,7 @@ function markdownbody() {
 //
 
 function getTheSourceCode() {
-  var sourceCode = '<html><head><script type="text/javascript" src="javascripts/markdownwebsite.js"></script></head><body>\r\n\r\n';
+  var sourceCode = '<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><script type="text/javascript" src="javascripts/markdownwebsite.js"></script></head><body>\r\n\r\n';
   sourceCode += getMarkdownFromNodes(markdownbody().childNodes);
   sourceCode += '\r\n\r\n</body></html>';
   return sourceCode;
@@ -274,6 +274,14 @@ function getMarkdownFromNodes(nodes) {
       } else {
         nodeMarkdown = getMarkdownFromNodes(node.childNodes);
       };
+      var addmarkdownleft = $(node).attr('addmarkdownleft');
+      var addmarkdownright = $(node).attr('addmarkdownright');
+      if (addmarkdownleft != undefined) {
+        nodeMarkdown = unescape(addmarkdownleft) + nodeMarkdown;
+      }
+      if (addmarkdownright != undefined) {
+        nodeMarkdown = nodeMarkdown + unescape(addmarkdownright);
+      }
     } else { 
       nodeMarkdown = unescape(nodeMarkdown);
     }
