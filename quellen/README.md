@@ -5,3 +5,5 @@
 [Tutorials from Freemor](https://archive.org/search.php?query=freemor)
 
 [Lehrmaterialien etoys](http://www.columbusschoolforgirls.net/etoys/)
+
+[On the schism between programmer and user (beginner) culture](http://pgbovine.net/two-cultures-of-computing.htm)
