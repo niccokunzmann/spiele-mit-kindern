@@ -1,8 +1,9 @@
-
+ï»¿
 Etoys kann auf [http://squeakland.org/download/](http://squeakland.org/download/) heruntergeladen werden.
 
-Folgende Dateien können nach der Installation geöffnet werden:
+Folgende Dateien kÃ¶nnen nach der Installation geÃ¶ffnet werden:
 
 - [Flyout](https://github.com/niccokunzmann/spiele-mit-kindern/blob/master/beispiele/Flyout.100.pr?raw=true)
 - [Pong](https://github.com/niccokunzmann/spiele-mit-kindern/blob/master/beispiele/Pong.008.pr?raw=true)
+- [Autorennen](https://github.com/niccokunzmann/spiele-mit-kindern/blob/master/beispiele/rennen.011.pr?raw=true)
 
