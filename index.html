@@ -86,11 +86,11 @@ Der Ball ist ein Objekt, das man rumschieben und mit der Maus anfassen kann. Jed
 Den Ball Bewegen
 ================
 
-Damit der Ball selbst was macht (hüstel: automatisches, eigenständiges Verhalten), öffnen wir die Kategorie **Scripte**.
+Damit der Ball selbst was macht (hüstel: automatisches, eigenständiges Verhalten), öffnen wir die Kategorie **Skripte**.
 
 ![Auf Tests klicken und Scripte auswählen](images/tutorial/07-BallVerhaltenScripte.png)
 
-In den Scripten (keines da bis jetzt), steckt das eigene Verhalten (keines da bis jetzt). Also muss ein neues Script her. Anklicken, rausziehen, auf die Welt  fallen lassen.
+In den Skripten (keines da bis jetzt), steckt das eigene Verhalten (keines da bis jetzt). Also muss ein neues Skript her. Anklicken, rausziehen, auf die Welt  fallen lassen.
 
 ![leeres Script rausziehen](images/tutorial/08-ScriptRausziehen.png)
 
@@ -107,7 +107,7 @@ Und mir zuliebe nenne ich das, was der Ball tun soll, **bewegen** und füge das 
 ![](images/tutorial/11-KategorieBewegung.png)
 </hinweis>
 
-Jetzt kann man auf die Uhr ![](images/tutorial/uhr.png) klicken und es läuft automatisch oder man kann es anhalten. Wenn man auf **Normal** klickt, kann man auch einstellen, dass das Script immer wenn die Maus drüber ist, ausgeführt wird oder einmal, wenn das Projekt geöffnet oder geschlossen wird.
+Jetzt kann man auf die Uhr ![](images/tutorial/uhr.png) klicken und das Skript läuft automatisch oder man kann es anhalten. Wenn man auf **Normal** klickt, kann man auch einstellen, dass das Skript immer wenn die Maus drüber ist, ausgeführt wird oder einmal, wenn das Projekt geöffnet oder geschlossen wird.
 
 <hinweis>
 Bewegt sich nicht der Ball sondern etwas anderes? Dann könntest du das gemacht haben: 
@@ -130,7 +130,7 @@ Wenn sich der Ball erstmal bewegt, ist 0 keine sehr spannende Richtung. Verände
 Geschwindigkeit Einstellen
 ==========================
 
-Der Ball wackelt und bewegt sich langsam. Man kann die Scriptgeschwindigkeit einstellen, damit er nicht ruckt. Drücke lange auf die Uhr ![](images/tutorial/UhrLaeuft.png):
+Der Ball wackelt und bewegt sich langsam. Man kann die Skriptgeschwindigkeit einstellen, damit er nicht ruckt. Drücke lange auf die Uhr ![](images/tutorial/UhrLaeuft.png):
 
 ![](images/tutorial/112-BewegenGeschwindigkeit.png)
 
@@ -181,7 +181,7 @@ Was auch geht, aber bei größeren Projekten stört, ist, dass der Ball den Schi
 
 ![](images/tutorial/153-SchieberNicchtSoGutBewegen.png)
 
-Schlecht, weil der Schieber das selbst entscheiden sollte, was er tut. Dann  kann man viel leichter herausfinden, warum etwas gerade nicht geht. Geht der Schieber ncht, schaut man beim Schieber....
+Schlecht, weil der Schieber das selbst entscheiden sollte, was er tut. Dann  kann man viel leichter herausfinden, warum etwas gerade nicht geht. Geht der Schieber nicht, schaut man beim Schieber....
 
 Ja, der bewegt sich nur nach oben. Aber das soll er nur tun, wenn eine Taste gedrückt wird. Also machen wir zuerst "eine Taste gedrückt wird", und dann machen wir das "wenn".
 
@@ -236,7 +236,7 @@ Schieber Steuern
 ================
 
 Es gibt einen Halo namens "duplizieren" ![](images/tutorial/duplizieren.png). Damit können wir kopieren, was wir schonmal gemacht haben. 
-Damit der Schieber sich nach unten bewegt, muss man den KeyPress duplizieren und den Test auf den Tastendruck. Der Test muss dazu aus dem Script genommen werden.
+Damit der Schieber sich nach unten bewegt, muss man den KeyPress duplizieren und den Test auf den Tastendruck. Der Test muss dazu aus dem Skript genommen werden.
 
 ![](images/tutorial/20-Duplizieren.png)
 
@@ -295,7 +295,7 @@ Damit der Ball am Schieber abprallt, muss man die Ball-**Richtung setzen**. Daf�
 
 ![](images/tutorial/26-RichtungSetzen.png)
 
-In den Kategorien **Tests**, **Beobachtung** und **Scripte** kann man diese Bauteile erhalten erhalten:
+In den Kategorien **Tests**, **Beobachtung** und **Skripte** kann man diese Bauteile erhalten erhalten:
 
 ![](images/tutorial/27-Bauteile.png)
 
@@ -303,9 +303,9 @@ In den Kategorien **Tests**, **Beobachtung** und **Scripte** kann man diese Baut
 Immer wenn **SchieberLinks** vorne in der Kachel steht, findet man sie, wenn man auf ![das Auge](images/tutorial/auge.png) vom Objekt namens **SchieberLinks** klickt. Sowas gilt auch für **Ball** und alle anderen Objekte.
 
 <hinweis>Für ![](images/tutorial/27-BallsRichtung.png) muss man auf den Ball rechts-klicken, ![das Auge](images/tutorial/auge.png) klicken und in der Kategorie **Einfach** den ![Pfeil](images/tutorial/Zuweisungspfeil.png) rausziehen.
-![](images/tutorial/27-SchieberLinksRichtungZuPunkt.png) ist im **SchieberLinks** ![](images/tutorial/auge.png) in der Kategorie **BeObachtung**. 
+![](images/tutorial/27-SchieberLinksRichtungZuPunkt.png) ist im **SchieberLinks** ![](images/tutorial/auge.png) in der Kategorie **Beobachtung**. 
 ![](images/tutorial/27-SchieberLinksUeberlapptPunkt.png) ist in der Kategorie **Tests**.
-Nun wirddie neue Richtung vom Ball gesetzt: 
+Nun wird die neue Richtung vom Ball gesetzt: 
 ![SchieberLinksRichtungZuPunkt wird auf die Zahl von Balls Richtung gezogen.](images/tutorial/27-RichtungAufSchieberZiehen.png)
 ![Punkt wird durch Ball ersetzt.](images/tutorial/27-SchieberLinksRichtungZuBall.png)
 **Punkt** macht keinen Sinn und wird durch **Ball** ersetzt.</hinweis>
@@ -326,7 +326,7 @@ Manchmal prallt der Ball unschön oben oder unten ab und geht ewig hin und her. 
 
 ![](images/tutorial/30-MitteVerschieben.png)
 
-Es kommt eine Hilfeblase, wenn die Maus länger über der mitte ist. 
+Es kommt eine Hilfeblase, wenn die Maus länger über der Mitte ist. 
 <hinweis>Um die Mitte zu verschieben, die Umschalttaste drücken, während die Maus an der Mitte zieht. </hinweis>
 
 [Speichern?](#dasprojektspeichern)
@@ -366,7 +366,7 @@ So habe ich das gemacht:
 ![](images/tutorial/37-Loesung.png)
 </solution>
 
-Es entsteht ein neues Problem: der Ball hat bei mir gerade 32 Punte vergeben. es sollte aber nur einer sein. Man kann das Problem lösen, 
+Es entsteht ein neues Problem: der Ball hat bei mir gerade 32 Punte vergeben, als er den linken Rand berührt hat. Es sollte aber nur ein Punkt sein. Man kann das Problem lösen, 
 
 1. indem man nur 1 Mal den Wert erhöht, solange der Ball den Schieber berührt. Dadurch müsste man sich aber merken, ob man schonmal hochgezählt hat,
 2. indem der Ball wieder in die Mitte gesetzt wird. 
@@ -381,11 +381,9 @@ In der Kategorie **Mehr Geometrie** befindet sich die Position des Balles und we
 
 ![](images/tutorial/38-PositionBestimmen.png)
 
-Indem ich den ![Zuweisungspfeil](images/tutorial/Zuweisungspfeil.png) anfasse, ziehe ich die Zuweisung hinaus und füge sie in das Ball-Script ein.
+Indem ich den ![Zuweisungspfeil](images/tutorial/Zuweisungspfeil.png) anfasse, ziehe ich die Zuweisung hinaus und füge sie in das Ball-Skript ein.
 
-<hinweis>
-2 Mal.
-</hinweis>
+<hinweis>An zwei Stellen im Skript muss die Position des Balls auf die Mitte gesetzt werden.</hinweis>
 
 <solution>
 ![](images/tutorial/39-BallGehtInDieMitte.png)
@@ -408,7 +406,7 @@ Was kann noch dazu?
 Spiel Starten Button
 ====================
 
-Aus den Kategorien **Scripte**, **Text** und **Mehr Geometrie** habe ich mir folgendes Script zusammengebaut:
+Aus den Kategorien **Skripte**, **Text** und **Mehr Geometrie** habe ich mir folgendes Skript zusammengebaut:
 
 ![](images/tutorial/41-StartenScript.png)
 
@@ -438,7 +436,6 @@ Was noch interessant sein könnte:
  - [Wenn du Interesse an anderen Programmiersprachen und Organisationen hast, die dir was beibringen.](http://jugendprogrammiert.weebly.com/)
  - Volleyball, Autorennen, Ballerspiel, Angry Birds.
  - Lass mich bitte wissen, was du noch für Ideen hast, damit ich sie hier hin tun kann. Ganz unten erreichst du meine Seite mit einer meiner Email-Adressen.
-
         
 
 </body></html>
